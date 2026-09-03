@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      pre_reservas: {
+        Row: {
+          acomodacao: string | null
+          adultos: number
+          check_in: string
+          check_out: string
+          cidade: string | null
+          created_at: string
+          criancas: number
+          email: string
+          estado: string | null
+          id: string
+          mensagem: string | null
+          nome: string
+          telefone: string
+        }
+        Insert: {
+          acomodacao?: string | null
+          adultos?: number
+          check_in: string
+          check_out: string
+          cidade?: string | null
+          created_at?: string
+          criancas?: number
+          email: string
+          estado?: string | null
+          id?: string
+          mensagem?: string | null
+          nome: string
+          telefone: string
+        }
+        Update: {
+          acomodacao?: string | null
+          adultos?: number
+          check_in?: string
+          check_out?: string
+          cidade?: string | null
+          created_at?: string
+          criancas?: number
+          email?: string
+          estado?: string | null
+          id?: string
+          mensagem?: string | null
+          nome?: string
+          telefone?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
