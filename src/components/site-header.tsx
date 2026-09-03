@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { HOTEL } from "@/lib/hotel";
+import { HOTEL, MOTOR_RESERVAS } from "@/lib/hotel";
 
 const LINKS = [
   { to: "/", label: "Início" },
@@ -37,13 +37,14 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <Link
-            to="/"
-            hash="reserva"
+          <a
+            href={MOTOR_RESERVAS}
+            target="_blank"
+            rel="noreferrer"
             className="rounded-full bg-surf px-4 py-2 text-xs font-semibold text-paper active:opacity-80"
           >
             Reservar
-          </Link>
+          </a>
           <button
             type="button"
             aria-label="Abrir menu"

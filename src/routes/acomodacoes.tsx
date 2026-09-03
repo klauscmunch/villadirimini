@@ -5,7 +5,7 @@ import { ReservationForm } from "@/components/reservation-form";
 
 const TITULO = "Acomodações — Hotel Villa di Rimini, Ubatuba";
 const DESCRICAO =
-  "Apartamentos duplo, vista mar e família no Hotel Villa di Rimini, em frente à Praia do Itaguá, em Ubatuba. Faça sua pré-reserva.";
+  "Apartamentos duplo, vista mar e família no Hotel Villa di Rimini, em frente à Praia do Itaguá, em Ubatuba. Reserve online.";
 
 export const Route = createFileRoute("/acomodacoes")({
   head: () => ({
