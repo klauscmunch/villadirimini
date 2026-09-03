@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcomodacoesRouteImport } from './routes/acomodacoes'
+import { Route as CafeDaManhaRouteImport } from './routes/cafe-da-manha'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as LazerRouteImport } from './routes/lazer'
+import { Route as OHotelRouteImport } from './routes/o-hotel'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcomodacoesRoute = AcomodacoesRouteImport.update({
+  id: '/acomodacoes',
+  path: '/acomodacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CafeDaManhaRoute = CafeDaManhaRouteImport.update({
+  id: '/cafe-da-manha',
+  path: '/cafe-da-manha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LazerRoute = LazerRouteImport.update({
+  id: '/lazer',
+  path: '/lazer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OHotelRoute = OHotelRouteImport.update({
+  id: '/o-hotel',
+  path: '/o-hotel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acomodacoes': typeof AcomodacoesRoute
+  '/cafe-da-manha': typeof CafeDaManhaRoute
+  '/contato': typeof ContatoRoute
+  '/lazer': typeof LazerRoute
+  '/o-hotel': typeof OHotelRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acomodacoes': typeof AcomodacoesRoute
+  '/cafe-da-manha': typeof CafeDaManhaRoute
+  '/contato': typeof ContatoRoute
+  '/lazer': typeof LazerRoute
+  '/o-hotel': typeof OHotelRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acomodacoes': typeof AcomodacoesRoute
+  '/cafe-da-manha': typeof CafeDaManhaRoute
+  '/contato': typeof ContatoRoute
+  '/lazer': typeof LazerRoute
+  '/o-hotel': typeof OHotelRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/acomodacoes'
+    | '/cafe-da-manha'
+    | '/contato'
+    | '/lazer'
+    | '/o-hotel'
+    | '/politica-de-privacidade'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/acomodacoes'
+    | '/cafe-da-manha'
+    | '/contato'
+    | '/lazer'
+    | '/o-hotel'
+    | '/politica-de-privacidade'
+  id:
+    | '__root__'
+    | '/'
+    | '/acomodacoes'
+    | '/cafe-da-manha'
+    | '/contato'
+    | '/lazer'
+    | '/o-hotel'
+    | '/politica-de-privacidade'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcomodacoesRoute: typeof AcomodacoesRoute
+  CafeDaManhaRoute: typeof CafeDaManhaRoute
+  ContatoRoute: typeof ContatoRoute
+  LazerRoute: typeof LazerRoute
+  OHotelRoute: typeof OHotelRoute
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/acomodacoes': {
+      id: '/acomodacoes'
+      path: '/acomodacoes'
+      fullPath: '/acomodacoes'
+      preLoaderRoute: typeof AcomodacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cafe-da-manha': {
+      id: '/cafe-da-manha'
+      path: '/cafe-da-manha'
+      fullPath: '/cafe-da-manha'
+      preLoaderRoute: typeof CafeDaManhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lazer': {
+      id: '/lazer'
+      path: '/lazer'
+      fullPath: '/lazer'
+      preLoaderRoute: typeof LazerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-hotel': {
+      id: '/o-hotel'
+      path: '/o-hotel'
+      fullPath: '/o-hotel'
+      preLoaderRoute: typeof OHotelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcomodacoesRoute: AcomodacoesRoute,
+  CafeDaManhaRoute: CafeDaManhaRoute,
+  ContatoRoute: ContatoRoute,
+  LazerRoute: LazerRoute,
+  OHotelRoute: OHotelRoute,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
