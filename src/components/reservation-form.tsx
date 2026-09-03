@@ -44,8 +44,21 @@ export function ReservationForm() {
     }
 
     setEnviando(true);
-    const { error } = await supabase.from("pre_reservas").insert(parsed.data);
-    setEnviando(false);
+    const d = parsed.data;
+    const { error } = await supabase.from("pre_reservas").insert({
+      nome: d.nome,
+      email: d.email,
+      telefone: d.telefone,
+      cidade: d.cidade ?? null,
+      estado: d.estado ?? null,
+      acomodacao: d.acomodacao ?? null,
+      check_in: d.check_in,
+      check_out: d.check_out,
+      adultos: d.adultos,
+      criancas: d.criancas,
+      mensagem: d.mensagem ?? null,
+    });
+
 
     if (error) {
       setErro("Não foi possível enviar agora. Tente pelo WhatsApp, por favor.");
