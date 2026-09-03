@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { MOTOR_RESERVAS } from "@/lib/hotel";
 
 export function RoomCard({
   nome,
@@ -41,13 +41,14 @@ export function RoomCard({
               {detalhe}
             </div>
           </div>
-          <Link
-            to="/"
-            hash="reserva"
+          <a
+            href={MOTOR_RESERVAS}
+            target="_blank"
+            rel="noreferrer"
             className="font-mono text-[10px] uppercase tracking-[0.15em] text-surf"
           >
-            Pré-reservar
-          </Link>
+            Reservar
+          </a>
         </div>
         <p className="mt-3 text-sm leading-snug text-ink-2">{descricao}</p>
       </div>

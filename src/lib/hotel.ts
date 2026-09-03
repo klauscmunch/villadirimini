@@ -18,12 +18,9 @@ export const HOTEL = {
   mapa: "https://www.google.com/maps/search/?api=1&query=Av.+Leovigildo+Dias+Vieira,+1140+-+Itagu%C3%A1,+Ubatuba+-+SP",
 };
 
-/**
- * Link do motor de reservas externo (H System).
- * Assim que o endereço for informado, basta preencher aqui que os botões
- * "Reservar agora" passam a apontar para o motor.
- */
-export const MOTOR_RESERVAS: string | null = null;
+/** Link do motor de reservas externo (H System). */
+export const MOTOR_RESERVAS =
+  "https://hbook.hsystem.com.br/Booking/IndexMobile?companyId=64c7f03434483c2f17b5ae20&language=pt";
 
 export const COMODIDADES = [
   "Recepção 24h",
