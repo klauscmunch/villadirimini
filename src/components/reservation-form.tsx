@@ -58,7 +58,7 @@ export function ReservationForm() {
       criancas: d.criancas,
       mensagem: d.mensagem ?? null,
     });
-
+    setEnviando(false);
 
     if (error) {
       setErro("Não foi possível enviar agora. Tente pelo WhatsApp, por favor.");
