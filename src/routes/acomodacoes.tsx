@@ -1,0 +1,53 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { ACOMODACOES } from "@/lib/hotel";
+import { RoomCard } from "@/components/room-card";
+import { ReservationForm } from "@/components/reservation-form";
+
+const TITULO = "Acomodações — Hotel Villa di Rimini, Ubatuba";
+const DESCRICAO =
+  "Apartamentos duplo, vista mar e família no Hotel Villa di Rimini, em frente à Praia do Itaguá, em Ubatuba. Faça sua pré-reserva.";
+
+export const Route = createFileRoute("/acomodacoes")({
+  head: () => ({
+    meta: [
+      { title: TITULO },
+      { name: "description", content: DESCRICAO },
+      { property: "og:title", content: TITULO },
+      { property: "og:description", content: DESCRICAO },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Acomodacoes,
+});
+
+function Acomodacoes() {
+  return (
+    <div className="mx-auto max-w-5xl px-4 py-8">
+      <div className="px-1 font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+        Acomodações
+      </div>
+      <h1 className="mt-1 px-1 font-display text-5xl uppercase leading-[0.95] tracking-tight text-ink">
+        Escolha o seu quarto
+      </h1>
+
+      <div className="mt-6 space-y-3">
+        {ACOMODACOES.map((a, i) => (
+          <RoomCard
+            key={a.slug}
+            nome={a.nome}
+            detalhe={a.detalhe}
+            descricao={a.descricao}
+            imagem={a.imagem}
+            etiqueta={a.etiqueta}
+            delay={60 + i * 60}
+          />
+        ))}
+      </div>
+
+      <div className="mt-8">
+        <ReservationForm />
+      </div>
+    </div>
+  );
+}

@@ -14,12 +14,14 @@ Site novo, moderno e mobile-first, em português, com os dados reais extraídos 
 ## Conteúdo real usado
 
 - De frente para a Praia do Itaguá, centro de Ubatuba; Praia Vermelha e Praia Grande a 10 min; Projeto Tamar e Aquário a 5 min.
-- Recepção 24h, Wi-Fi grátis em todas as dependências, estacionamento privativo gratuito, piscina e bar, café da manhã buffet em sala ampla, pet friendly (um dos poucos do Litoral Norte), serviços de apoio (massagem, lavanderia, aluguel de bicicletas e carros).
-- Av. Leovigildo Dias Vieira, 1140 — Itaguá, Ubatuba/SP · (12) 3832-5785 · WhatsApp mesmo número · reservas@villadirimini.com.br · villadirimi@terra.com.br · Instagram @villadirimini · Facebook HotelVillaDiRimini.
+- Recepção 24h, Wi-Fi grátis em todas as dependências, estacionamento privativo gratuito, piscina e bar, café da manhã buffet em sala ampla, pet friendly.
+- Av. Leovigildo Dias Vieira, 1140 — Itaguá, Ubatuba/SP · (12) 3832-5785 · WhatsApp mesmo número · [reservas@villadirimini.com.br](mailto:reservas@villadirimini.com.br) · [villadirimi@terra.com.br](mailto:villadirimi@terra.com.br) · Instagram @villadirimini · Facebook HotelVillaDiRimini.
 
 ## Reservas
 
-Formulário de pré-reserva (nome, e-mail, telefone, cidade/estado, check-in, check-out, adultos, crianças de 0 a 5, acomodação e mensagem), com validação. O envio precisa de backend: ativo o Lovable Cloud para gravar cada pedido e disparar o e-mail para reservas@villadirimini.com.br. Enquanto o envio de e-mail não estiver configurado com domínio verificado, o pedido fica salvo e um botão de WhatsApp fica sempre visível como alternativa.
+Formulário de pré-reserva (nome, e-mail, telefone, cidade/estado, check-in, check-out, adultos, crianças de 0 a 5, acomodação e mensagem), com validação. O envio precisa de backend: ativo o Lovable Cloud para gravar cada pedido e disparar o e-mail para [reservas@villadirimini.com.br](mailto:reservas@villadirimini.com.br). Enquanto o envio de e-mail não estiver configurado com domínio verificado, o pedido fica salvo e um botão de WhatsApp fica sempre visível como alternativa.
+
+Botão para jogar para o motor de reserva externo do h system
 
 ## Imagens
 
