@@ -182,5 +182,16 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
   }
 }
+
+@utility wave {
+  background-image: repeating-linear-gradient(
+    115deg,
+    transparent 0 12px,
+    color-mix(in oklab, var(--surf) 18%, transparent) 12px 13px,
+    transparent 13px 22px
+  );
+}
+
