@@ -23,7 +23,7 @@ export function SiteFooter() {
           <Link to="/politica-de-privacidade">Política de privacidade</Link>
         </div>
         <p className="mt-4 font-mono text-[10px] text-paper/50">
-          © 2014 – {new Date().getFullYear()} {HOTEL.nome} · {HOTEL.endereco}, {HOTEL.bairro} —{" "}
+          © 2026 {HOTEL.nome} · {HOTEL.endereco}, {HOTEL.bairro} —{" "}
           {HOTEL.cidade}/{HOTEL.uf}
         </p>
       </div>
