@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import fachadaHotel from "@/assets/hotel-fachada.jpg";
+import heroVaranda from "@/assets/hero-varanda.jpg.asset.json";
+import heroPost from "@/assets/hero-post.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -8,6 +10,7 @@ import { ACOMODACOES, COMODIDADES, HOTEL } from "@/lib/hotel";
 import { Marquee } from "@/components/marquee";
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
+import { HeroSlideshow } from "@/components/hero-slideshow";
 
 const TITULO = "Hotel Villa di Rimini — Pousada pé na areia em Ubatuba";
 const DESCRICAO =
@@ -57,12 +60,22 @@ function Home() {
     <div className="mx-auto max-w-5xl pb-4">
       <section className="px-4 pt-4">
         <div className="relative overflow-hidden rounded-[16px] outline-1 -outline-offset-1 outline-black/5">
-          <img
-            src={fachadaHotel}
-            alt="Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba"
-            width={1080}
-            height={1320}
-            className="h-[420px] w-full object-cover md:h-[520px]"
+          <HeroSlideshow
+            slides={[
+              {
+                src: fachadaHotel,
+                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroVaranda.url,
+                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroPost.url,
+                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
+              },
+            ]}
+            interval={5000}
           />
 
 
