@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import fachadaHotel from "@/assets/hotel-fachada.jpg";
+import heroVaranda from "@/assets/hero-varanda.jpg.asset.json";
+import heroPost from "@/assets/hero-post.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -8,6 +10,7 @@ import { ACOMODACOES, COMODIDADES, HOTEL } from "@/lib/hotel";
 import { Marquee } from "@/components/marquee";
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
+import { HeroSlideshow } from "@/components/hero-slideshow";
 
 const TITULO = "Hotel Villa di Rimini — Pousada pé na areia em Ubatuba";
 const DESCRICAO =
