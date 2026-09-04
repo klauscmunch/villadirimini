@@ -61,14 +61,14 @@ export function SiteHeader() {
       </div>
 
       {aberto && (
-        <nav className="border-t border-line bg-paper px-5 py-3 md:hidden">
+        <nav className="border-t border-paper/20 bg-surf px-5 py-3 md:hidden">
           {LINKS.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => setAberto(false)}
-              className="block py-2 font-mono text-[12px] uppercase tracking-[0.15em] text-ink-2"
-              activeProps={{ className: "text-ink" }}
+              className="block py-2 font-mono text-[12px] uppercase tracking-[0.15em] text-paper/80"
+              activeProps={{ className: "text-paper" }}
             >
               {l.label}
             </Link>
