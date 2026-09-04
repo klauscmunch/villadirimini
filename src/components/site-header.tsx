@@ -16,7 +16,7 @@ export function SiteHeader() {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-paper/95 backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-paper/20 bg-surf">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
         <Link to="/" className="leading-none" onClick={() => setAberto(false)}>
           <img
@@ -32,8 +32,8 @@ export function SiteHeader() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink-2 hover:text-ink"
-                activeProps={{ className: "text-ink" }}
+                className="font-mono text-[11px] uppercase tracking-[0.15em] text-paper/80 hover:text-paper"
+                activeProps={{ className: "text-paper" }}
               >
                 {l.label}
               </Link>
@@ -43,7 +43,7 @@ export function SiteHeader() {
             href={MOTOR_RESERVAS}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full bg-surf px-4 py-2 text-xs font-semibold text-paper active:opacity-80"
+            className="rounded-full bg-paper px-4 py-2 text-xs font-semibold text-ink active:opacity-80"
           >
             Reservar
           </a>
@@ -52,10 +52,10 @@ export function SiteHeader() {
             aria-label="Abrir menu"
             aria-expanded={aberto}
             onClick={() => setAberto((v) => !v)}
-            className="flex size-9 flex-col items-center justify-center gap-1 rounded-full border border-line md:hidden"
+            className="flex size-9 flex-col items-center justify-center gap-1 rounded-full border border-paper/30 md:hidden"
           >
-            <span className="block h-px w-4 bg-ink" />
-            <span className="block h-px w-4 bg-ink" />
+            <span className="block h-px w-4 bg-paper" />
+            <span className="block h-px w-4 bg-paper" />
           </button>
         </div>
       </div>
