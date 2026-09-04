@@ -70,7 +70,7 @@ function Home() {
         <div className="relative -my-1 px-1">
           <div className="inline-block -rotate-2 animate-rise rounded-sm bg-ink py-1.5 pl-4 pr-3 text-paper">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em]">
-              Pé na areia · Praia do Itaguá
+              NA AVENIDA DO DO ITAGUÁ
             </span>
           </div>
         </div>
@@ -82,8 +82,8 @@ function Home() {
             <span className="block text-[58px]">na porta.</span>
           </h1>
           <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
-            De frente para a Praia do Itaguá, no centro de Ubatuba. Recepção 24h, piscina com bar,
-            café da manhã buffet e varanda aberta para o mar.
+            De frente para a Praia do Itaguá.
+            &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
           </p>
         </div>
       </section>
@@ -170,7 +170,7 @@ function Home() {
                 Piscina &amp; bar
               </div>
               <p className="mt-1.5 text-sm leading-snug text-ink">
-                Piscina, deck e bar para petiscos e bebidas geladas.
+                Piscina e bar para petiscos e bebidas geladas.
               </p>
             </Link>
             <Link to="/cafe-da-manha" className="block rounded-[12px] bg-paper-2 p-4">

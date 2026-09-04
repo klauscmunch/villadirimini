@@ -25,7 +25,7 @@ export const MOTOR_RESERVAS =
 export const COMODIDADES = [
   "Recepção 24h",
   "Wi-Fi grátis",
-  "Estacionamento privativo",
+  "ESTACIONAMENTO",
   "Piscina & bar",
   "Café da manhã buffet",
   "Pet friendly",
@@ -43,7 +43,7 @@ export const ACOMODACOES = [
   },
   {
     slug: "mar",
-    nome: "Vista mar",
+    nome: "Duplo vista mar",
     imagem: quartoMar,
     detalhe: "2 pessoas · varanda",
     descricao:
@@ -54,7 +54,7 @@ export const ACOMODACOES = [
     slug: "familia",
     nome: "Família",
     imagem: quartoFamilia,
-    detalhe: "4 pessoas · cama de casal + solteiros",
+    detalhe: "4 PESSOAS · 1 CAMA DE CASAL + 2 CAMAS DE SOLTEIROS",
     descricao:
       "Espaço extra para a família toda, com camas adicionais e área de estar.",
     etiqueta: "Família",
