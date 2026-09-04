@@ -70,7 +70,7 @@ function Home() {
         <div className="relative -my-1 px-1">
           <div className="inline-block -rotate-2 animate-rise rounded-sm bg-ink py-1.5 pl-4 pr-3 text-paper">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em]">
-              NA AVENIDA DO DO ITAGUÁ
+              NA AVENIDA DO ITAGUÁ
             </span>
           </div>
         </div>
