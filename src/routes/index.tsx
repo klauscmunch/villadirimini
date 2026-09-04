@@ -60,12 +60,22 @@ function Home() {
     <div className="mx-auto max-w-5xl pb-4">
       <section className="px-4 pt-4">
         <div className="relative overflow-hidden rounded-[16px] outline-1 -outline-offset-1 outline-black/5">
-          <img
-            src={fachadaHotel}
-            alt="Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba"
-            width={1080}
-            height={1320}
-            className="h-[420px] w-full object-cover md:h-[520px]"
+          <HeroSlideshow
+            slides={[
+              {
+                src: fachadaHotel,
+                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroVaranda.url,
+                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroPost.url,
+                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
+              },
+            ]}
+            interval={5000}
           />
 
 
