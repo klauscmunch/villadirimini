@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import heroPraia from "@/assets/hero-praia.jpg";
+import heroPraia from "@/assets/hotel-fachada.jpg";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -59,11 +59,12 @@ function Home() {
         <div className="relative overflow-hidden rounded-[16px] outline-1 -outline-offset-1 outline-black/5">
           <img
             src={heroPraia}
-            alt="Praia do Itaguá em Ubatuba ao amanhecer"
+            alt="Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba"
             width={1080}
             height={1320}
             className="h-[420px] w-full object-cover md:h-[520px]"
           />
+
           <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
         </div>
 
