@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import hotelImg from "@/assets/hotel.jpg";
+import areaExterna from "@/assets/area-externa.jpg.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import { Gallery } from "@/components/gallery";
@@ -62,7 +62,7 @@ function OHotel() {
       <div className="mt-8">
         <Gallery
           imagens={[
-            { src: hotelImg, alt: "Recepção e área comum do hotel" },
+            { src: areaExterna.url, alt: "Área externa com piscina e varanda do Hotel Villa di Rimini" },
             { src: piscina, alt: "Piscina com vista para o mar" },
             { src: cafeDaManha, alt: "Mesa de café da manhã" },
           ]}
