@@ -94,7 +94,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0px;
 
   /* Paleta "Diagonal kinetic litoral" */
   --paper: oklch(0.964 0.014 90.5);
