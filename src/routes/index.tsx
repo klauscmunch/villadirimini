@@ -221,15 +221,17 @@ function Home() {
         </div>
       </section>
 
-      <section className="px-4 pb-4 pt-10">
-        <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-          (d) · Contato
+      <section className="px-0 pb-4 pt-10 sm:px-4">
+        <div className="px-4 sm:px-0">
+          <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+            (d) · Contato
+          </div>
+          <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
+            Fale com a recepção
+          </h2>
         </div>
-        <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
-          Fale com a recepção
-        </h2>
 
-        <div className="mt-4 overflow-hidden rounded-[14px] bg-paper-2 outline-1 -outline-offset-1 outline-black/5">
+        <div className="mt-4 overflow-hidden bg-paper-2 outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
           <a href={HOTEL.mapa} target="_blank" rel="noreferrer">
             <img
               src={localizacao}
@@ -252,9 +254,9 @@ function Home() {
               href={HOTEL.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-md bg-ink py-3.5 text-sm font-semibold text-paper active:opacity-90"
+              className="mt-4 flex w-full items-center justify-center gap-2 bg-ink py-3.5 text-sm font-semibold text-paper active:opacity-90 sm:rounded-md"
             >
-              <span className="inline-block size-2 rounded-full bg-surf" />
+              <span className="inline-block size-2 bg-surf sm:rounded-full" />
               Chamar no WhatsApp
             </a>
           </div>
