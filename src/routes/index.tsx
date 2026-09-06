@@ -111,21 +111,42 @@ function Home() {
         <Marquee itens={COMODIDADES} />
       </div>
 
-      <section className="px-5 pt-10">
-        <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-          (a) · Sobre
+      <section className="px-4 pt-10">
+        <div className="px-1">
+          <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+            (a) · Localização
+          </div>
         </div>
-        <h2 className="mt-2 animate-rise font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink [animation-delay:60ms]">
-          Varanda aberta para o mar
-        </h2>
-        <p className="mt-3 max-w-[46ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:120ms]">
-          Estamos na {HOTEL.endereco}, no {HOTEL.bairro}, perto dos melhores restaurantes e lojas de
-          Ubatuba. O Projeto Tamar e o Aquário ficam a 5 minutos; as praias Vermelha e Grande, a 10
+        <div className="mt-3 overflow-hidden rounded-[14px] outline-1 -outline-offset-1 outline-black/5">
+          <iframe
+            title="Localização do Hotel Villa di Rimini no mapa"
+            src="https://www.google.com/maps?q=Av.+Leovigildo+Dias+Vieira,+1140+-+Itagu%C3%A1,+Ubatuba+-+SP&z=16&output=embed"
+            className="h-64 w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="flex items-center justify-between gap-3 bg-paper-2 p-4">
+            <p className="text-sm leading-snug text-ink">
+              {HOTEL.endereco} · {HOTEL.bairro}, {HOTEL.cidade}/{HOTEL.uf}
+            </p>
+            <a
+              href={HOTEL.mapa}
+              target="_blank"
+              rel="noreferrer"
+              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
+            >
+              Abrir no Maps →
+            </a>
+          </div>
+        </div>
+        <p className="mt-3 max-w-[46ch] px-1 text-pretty text-sm leading-relaxed text-ink-2">
+          O Projeto Tamar e o Aquário ficam a 5 minutos; as praias Vermelha e Grande, a 10
           minutos de carro.
         </p>
         <Link
           to="/o-hotel"
-          className="mt-4 inline-block font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
+          className="mt-3 inline-block px-1 font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
         >
           Conhecer o hotel →
         </Link>
