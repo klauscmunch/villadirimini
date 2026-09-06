@@ -90,7 +90,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-5 px-4">
+      <section className="mt-5 px-0 sm:px-4">
         <ReservationForm />
       </section>
 
@@ -98,13 +98,13 @@ function Home() {
         <Marquee itens={COMODIDADES} />
       </div>
 
-      <section className="px-4 pt-10">
-        <div className="px-1">
+      <section className="px-0 pt-10 sm:px-4">
+        <div className="px-4 sm:px-1">
           <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
             (a) · Localização
           </div>
         </div>
-        <div className="mt-3 overflow-hidden rounded-[14px] outline-1 -outline-offset-1 outline-black/5">
+        <div className="mt-3 overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
           <iframe
             title="Localização do Hotel Villa di Rimini no mapa"
             src="https://www.google.com/maps?q=Av.+Leovigildo+Dias+Vieira,+1140+-+Itagu%C3%A1,+Ubatuba+-+SP&z=16&output=embed"
@@ -127,13 +127,13 @@ function Home() {
             </a>
           </div>
         </div>
-        <p className="mt-3 max-w-[46ch] px-1 text-pretty text-sm leading-relaxed text-ink-2">
+        <p className="mt-3 max-w-[46ch] px-4 text-pretty text-sm leading-relaxed text-ink-2 sm:px-1">
           O Projeto Tamar e o Aquário ficam a 5 minutos; as praias Vermelha e Grande, a 10
           minutos de carro.
         </p>
         <Link
           to="/o-hotel"
-          className="mt-3 inline-block px-1 font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
+          className="mt-3 inline-block px-4 font-mono text-[11px] uppercase tracking-[0.15em] text-surf sm:px-1"
         >
           Conhecer o hotel →
         </Link>
