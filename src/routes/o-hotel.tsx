@@ -33,8 +33,8 @@ function OHotel() {
 
       <div className="mt-5 space-y-4 text-sm leading-relaxed text-ink-2">
         <p>
-          De frente para a Praia do Itaguá, no animado centro de Ubatuba, nosso hotel desfruta de uma
-          localização privilegiada, próximo aos melhores restaurantes, lojas e shoppings da cidade.
+          De frente para a Praia do Itaguá, no coração de Ubatuba, nosso hotel desfruta de uma
+          localização privilegiada, próximo aos melhores restaurantes, lojas e passeios de barco da cidade.
         </p>
         <p>
           A Praia Vermelha e a Praia Grande ficam a apenas 10 minutos de carro. Já o Projeto Tamar e
@@ -42,7 +42,7 @@ function OHotel() {
         </p>
         <p>
           A nossa recepção funciona 24 horas e está preparada para auxiliá-los na indicação de
-          praias, trilhas e passeios de barco ou em serviços auxiliares como sessão de massagem,
+          praias, restaurantes e passeios de barco ou em serviços auxiliares como sessão de massagem,
           lavanderia e aluguel de bicicletas e carros.
         </p>
         <p>O acesso à internet sem fio (Wi-Fi) é gratuito em todas as dependências.</p>
@@ -51,7 +51,8 @@ function OHotel() {
           iluminada. Você também pode desfrutar de petiscos e bebidas refrescantes em nosso bar ou à
           beira da piscina.
         </p>
-        <p>O estacionamento privativo é gratuito.</p>
+        <p>
+        </p>
         <p>
           Aqui seu animal de estimação é super bem-vindo: somos um dos poucos hotéis “Pet Friendly”
           do Litoral Norte.
