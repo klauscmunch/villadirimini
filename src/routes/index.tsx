@@ -82,20 +82,7 @@ function Home() {
           <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
         </div>
 
-        <div className="relative -my-1 px-1">
-          <div className="inline-block -rotate-2 animate-rise rounded-sm bg-ink py-1.5 pl-4 pr-3 text-paper">
-            <span className="font-mono text-[10px] uppercase tracking-[0.25em]">
-              NA AVENIDA DO ITAGUÁ
-            </span>
-          </div>
-        </div>
-
         <div className="pt-4">
-          <h1 className="animate-rise font-display uppercase leading-[0.92] tracking-tight text-ink [animation-delay:80ms]">
-            <span className="block text-[58px]">O mar</span>
-            <span className="block text-[58px] text-surf">bate logo</span>
-            <span className="block text-[58px]">na porta.</span>
-          </h1>
           <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
             De frente para a Praia do Itaguá.
             &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
