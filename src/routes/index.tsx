@@ -58,8 +58,8 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div className="mx-auto max-w-5xl pb-4">
-      <section className="px-4 pt-4">
-        <div className="relative overflow-hidden rounded-[16px] outline-1 -outline-offset-1 outline-black/5">
+      <section className="px-0 pt-4 sm:px-4">
+        <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
           <HeroSlideshow
             slides={[
               {
@@ -82,7 +82,7 @@ function Home() {
           <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
         </div>
 
-        <div className="pt-4">
+        <div className="px-4 pt-4 sm:px-0">
           <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
             De frente para a Praia do Itaguá.
             &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
