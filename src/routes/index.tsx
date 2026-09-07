@@ -58,14 +58,6 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div className="mx-auto max-w-5xl pb-4">
-      <section className="px-0 sm:px-4">
-        <div className="bg-surf px-5 py-8 sm:px-6 sm:py-10">
-          <h2 className="font-display text-2xl uppercase leading-[0.95] tracking-tight text-paper sm:text-3xl">
-            Sua próxima estadia em Ubatuba está a alguns cliques ⬇️
-          </h2>
-        </div>
-      </section>
-
       <section className="px-0 pt-4 sm:px-4">
         <div className="px-4 sm:px-1">
           <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
