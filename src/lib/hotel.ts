@@ -33,15 +33,6 @@ export const COMODIDADES = [
 
 export const ACOMODACOES = [
   {
-    slug: "duplo",
-    nome: "Duplo",
-    imagem: quartoDuplo,
-    detalhe: "2 pessoas · cama de casal",
-    descricao:
-      "Apartamento confortável para casais, com ar-condicionado, TV, frigobar e enxoval completo.",
-    etiqueta: null as string | null,
-  },
-  {
     slug: "mar",
     nome: "Duplo vista mar",
     imagem: quartoMar,
@@ -49,6 +40,15 @@ export const ACOMODACOES = [
     descricao:
       "Apartamento voltado para a Praia do Itaguá, com varanda para acompanhar o nascer do sol.",
     etiqueta: "Vista mar",
+  },
+  {
+    slug: "duplo",
+    nome: "Duplo",
+    imagem: quartoDuplo,
+    detalhe: "2 pessoas · cama de casal",
+    descricao:
+      "Apartamento confortável para casais, com ar-condicionado, TV, frigobar e enxoval completo.",
+    etiqueta: null as string | null,
   },
   {
     slug: "familia",
