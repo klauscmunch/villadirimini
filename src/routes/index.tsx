@@ -63,7 +63,7 @@ function Home() {
         <img
           src={bannerUbatuba.url}
           alt="Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques"
-          className="h-auto w-full max-h-[280px] object-cover md:max-h-[360px]"
+          className="h-auto w-full"
           loading="eager"
         />
       </section>
