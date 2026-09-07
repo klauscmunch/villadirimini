@@ -59,6 +59,31 @@ function Home() {
   return (
     <div className="mx-auto max-w-5xl pb-4">
       <section className="px-0 pt-4 sm:px-4">
+        <div className="px-4 sm:px-1">
+          <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+            (a) · Acomodações
+          </div>
+          <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
+            Suítes de mar
+          </h2>
+        </div>
+
+        <div className="mt-5 space-y-3">
+          {ACOMODACOES.map((a, i) => (
+            <RoomCard
+              key={a.slug}
+              nome={a.nome}
+              detalhe={a.detalhe}
+              descricao={a.descricao}
+              imagem={a.imagem}
+              etiqueta={a.etiqueta}
+              delay={80 + i * 60}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-5 px-0 sm:px-4">
         <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
           <HeroSlideshow
             slides={[
@@ -87,31 +112,6 @@ function Home() {
             De frente para a Praia do Itaguá.
             &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
           </p>
-        </div>
-      </section>
-
-      <section className="mt-5 px-0 sm:px-4">
-        <div className="px-4 sm:px-1">
-          <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-            (a) · Acomodações
-          </div>
-          <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
-            Suítes de mar
-          </h2>
-        </div>
-
-        <div className="mt-5 space-y-3">
-          {ACOMODACOES.map((a, i) => (
-            <RoomCard
-              key={a.slug}
-              nome={a.nome}
-              detalhe={a.detalhe}
-              descricao={a.descricao}
-              imagem={a.imagem}
-              etiqueta={a.etiqueta}
-              delay={80 + i * 60}
-            />
-          ))}
         </div>
       </section>
 
