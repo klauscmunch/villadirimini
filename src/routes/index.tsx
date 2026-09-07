@@ -58,8 +58,17 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div className="mx-auto max-w-5xl pb-4">
-      <section className="px-0 pt-4 sm:px-4">
+    <>
+      <section className="w-full">
+        <img
+          src={bannerUbatuba.url}
+          alt="Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques"
+          className="h-auto w-full max-h-[280px] object-cover md:max-h-[360px]"
+          loading="eager"
+        />
+      </section>
+      <div className="mx-auto max-w-5xl pb-4">
+        <section className="px-0 pt-4 sm:px-4">
         <div className="px-4 sm:px-1">
           <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
             (a) · Acomodações
