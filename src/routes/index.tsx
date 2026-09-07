@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import fachadaHotel from "@/assets/hotel-fachada.jpg";
 import heroVaranda from "@/assets/hero-varanda.jpg.asset.json";
 import heroPost from "@/assets/hero-post.png.asset.json";
+import bannerUbatuba from "@/assets/banner-ubatuba.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -57,8 +58,17 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <div className="mx-auto max-w-5xl pb-4">
-      <section className="px-0 pt-4 sm:px-4">
+    <>
+      <section className="w-full">
+        <img
+          src={bannerUbatuba.url}
+          alt="Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques"
+          className="h-auto w-full"
+          loading="eager"
+        />
+      </section>
+      <div className="mx-auto max-w-5xl pb-4">
+        <section className="px-0 pt-4 sm:px-4">
         <div className="px-4 sm:px-1">
           <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
             (a) · Acomodações
@@ -263,5 +273,6 @@ function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }
