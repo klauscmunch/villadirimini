@@ -179,46 +179,6 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-5 px-0 sm:px-4">
-        <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
-          <HeroSlideshow
-            slides={[
-              {
-                src: fachadaHotel,
-                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
-              },
-              {
-                src: heroVaranda.url,
-                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
-              },
-              {
-                src: heroPost.url,
-                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
-              },
-            ]}
-            interval={5000}
-          />
-
-
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
-        </div>
-
-        <div className="px-4 pt-4 sm:px-0">
-          <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
-            De frente para a Praia do Itaguá.
-            &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-5 px-0 sm:px-4">
-        <ReservationForm />
-      </section>
-
-      <div className="mt-6">
-        <Marquee itens={COMODIDADES} />
-      </div>
-
       <section className="px-0 pt-10 sm:px-4">
         <div className="px-4 sm:px-1">
           <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
@@ -259,6 +219,46 @@ function Home() {
           Conhecer o hotel →
         </Link>
       </section>
+
+      <section className="mt-5 px-0 sm:px-4">
+        <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
+          <HeroSlideshow
+            slides={[
+              {
+                src: fachadaHotel,
+                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroVaranda.url,
+                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroPost.url,
+                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
+              },
+            ]}
+            interval={5000}
+          />
+
+
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
+        </div>
+
+        <div className="px-4 pt-4 sm:px-0">
+          <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
+            De frente para a Praia do Itaguá.
+            &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-5 px-0 sm:px-4">
+        <ReservationForm />
+      </section>
+
+      <div className="mt-6">
+        <Marquee itens={COMODIDADES} />
+      </div>
 
 
       <section className="px-0 pb-4 pt-10 sm:px-4">
