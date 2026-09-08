@@ -61,11 +61,18 @@ function Home() {
   return (
     <>
       <section className="w-full">
-        <img
-          src={bannerUbatuba.url}
-          alt="Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques"
-          className="h-auto w-full"
-          loading="eager"
+        <BannerSlideshow
+          slides={[
+            {
+              src: bannerUbatuba1.url,
+              alt: "Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques",
+            },
+            {
+              src: bannerUbatuba2.url,
+              alt: "Banner panorâmico da Praia do Itaguá em Ubatuba",
+            },
+          ]}
+          interval={5000}
         />
       </section>
       <div className="mx-auto max-w-5xl pb-4">
