@@ -27,20 +27,20 @@ export function BannerSlideshow({ slides, interval = 5000 }: BannerSlideshowProp
       <img
         src={slides[0]?.src}
         alt={slides[0]?.alt}
-        className="aspect-[2.5/1] w-full object-cover md:aspect-[3.5/1]"
+        className="w-full object-contain"
       />
     );
   }
 
   return (
-    <div className="relative aspect-[2.5/1] w-full md:aspect-[3.5/1]">
+    <div className="relative w-full">
       {slides.map((slide, index) => (
         <img
           key={slide.src}
           src={slide.src}
           alt={slide.alt}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
-            index === current ? "opacity-100" : "opacity-0"
+          className={`w-full object-contain transition-opacity duration-1000 ease-in-out ${
+            index === current ? "relative opacity-100" : "absolute inset-0 opacity-0"
           }`}
         />
       ))}
