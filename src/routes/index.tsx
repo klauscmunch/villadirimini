@@ -13,6 +13,7 @@ import { Marquee } from "@/components/marquee";
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
 import { HeroSlideshow } from "@/components/hero-slideshow";
+import { BannerSlideshow } from "@/components/banner-slideshow";
 
 const TITULO = "Hotel Villa di Rimini — Pousada pé na areia em Ubatuba";
 const DESCRICAO =
