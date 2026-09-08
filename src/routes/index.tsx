@@ -3,7 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import fachadaHotel from "@/assets/hotel-fachada.jpg";
 import heroVaranda from "@/assets/hero-varanda.jpg.asset.json";
 import heroPost from "@/assets/hero-post.png.asset.json";
-import bannerUbatuba from "@/assets/banner-ubatuba.png.asset.json";
+import bannerUbatuba1 from "@/assets/banner-ubatuba-1.png.asset.json";
+import bannerUbatuba2 from "@/assets/banner-ubatuba-2.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -12,6 +13,7 @@ import { Marquee } from "@/components/marquee";
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
 import { HeroSlideshow } from "@/components/hero-slideshow";
+import { BannerSlideshow } from "@/components/banner-slideshow";
 
 const TITULO = "Hotel Villa di Rimini — Pousada pé na areia em Ubatuba";
 const DESCRICAO =
@@ -60,11 +62,18 @@ function Home() {
   return (
     <>
       <section className="w-full">
-        <img
-          src={bannerUbatuba.url}
-          alt="Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques"
-          className="h-auto w-full"
-          loading="eager"
+        <BannerSlideshow
+          slides={[
+            {
+              src: bannerUbatuba1.url,
+              alt: "Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques",
+            },
+            {
+              src: bannerUbatuba2.url,
+              alt: "Banner panorâmico da Praia do Itaguá em Ubatuba",
+            },
+          ]}
+          interval={5000}
         />
       </section>
       <div className="mx-auto max-w-5xl pb-4">
