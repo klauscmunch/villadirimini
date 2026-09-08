@@ -93,91 +93,10 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-5 px-0 sm:px-4">
-        <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
-          <HeroSlideshow
-            slides={[
-              {
-                src: fachadaHotel,
-                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
-              },
-              {
-                src: heroVaranda.url,
-                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
-              },
-              {
-                src: heroPost.url,
-                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
-              },
-            ]}
-            interval={5000}
-          />
-
-
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
-        </div>
-
-        <div className="px-4 pt-4 sm:px-0">
-          <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
-            De frente para a Praia do Itaguá.
-            &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
-          </p>
-        </div>
-      </section>
-
-      <section className="mt-5 px-0 sm:px-4">
-        <ReservationForm />
-      </section>
-
-      <div className="mt-6">
-        <Marquee itens={COMODIDADES} />
-      </div>
-
-      <section className="px-0 pt-10 sm:px-4">
-        <div className="px-4 sm:px-1">
-          <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-            (b) · Localização
-          </div>
-        </div>
-        <div className="mt-3 overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
-          <iframe
-            title="Localização do Hotel Villa di Rimini no mapa"
-            src="https://www.google.com/maps?q=Av.+Leovigildo+Dias+Vieira,+1140+-+Itagu%C3%A1,+Ubatuba+-+SP&z=16&output=embed"
-            className="h-64 w-full border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
-          <div className="flex items-center justify-between gap-3 bg-paper-2 p-4">
-            <p className="text-sm leading-snug text-ink">
-              {HOTEL.endereco} · {HOTEL.bairro}, {HOTEL.cidade}/{HOTEL.uf}
-            </p>
-            <a
-              href={HOTEL.mapa}
-              target="_blank"
-              rel="noreferrer"
-              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
-            >
-              Abrir no Maps →
-            </a>
-          </div>
-        </div>
-        <p className="mt-3 max-w-[46ch] px-4 text-pretty text-sm leading-relaxed text-ink-2 sm:px-1">
-          O Projeto Tamar e o Aquário ficam a 5 minutos; as praias Vermelha e Grande, a 10
-          minutos de carro.
-        </p>
-        <Link
-          to="/o-hotel"
-          className="mt-3 inline-block px-4 font-mono text-[11px] uppercase tracking-[0.15em] text-surf sm:px-1"
-        >
-          Conhecer o hotel →
-        </Link>
-      </section>
-
       <section className="px-0 pt-10 sm:px-4">
         <div className="px-4 sm:px-0">
           <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-            (c) · Lazer &amp; café
+            (b) · Lazer &amp; café
           </div>
           <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
             Piscina, bar e buffet
@@ -230,6 +149,88 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <section className="mt-5 px-0 sm:px-4">
+        <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
+          <HeroSlideshow
+            slides={[
+              {
+                src: fachadaHotel,
+                alt: "Fachada do Hotel Villa di Rimini na Avenida do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroVaranda.url,
+                alt: "Vista da varanda do Hotel Villa di Rimini para a Praia do Itaguá, em Ubatuba",
+              },
+              {
+                src: heroPost.url,
+                alt: "Vista aérea da Praia do Itaguá e do Hotel Villa di Rimini em Ubatuba",
+              },
+            ]}
+            interval={5000}
+          />
+
+
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink/10 to-transparent" />
+        </div>
+
+        <div className="px-4 pt-4 sm:px-0">
+          <p className="mt-4 max-w-[40ch] animate-rise text-pretty text-sm leading-relaxed text-ink-2 [animation-delay:160ms]">
+            De frente para a Praia do Itaguá.
+            &nbsp;Recepção 24h, piscina, café da manhã buffet e opções com varanda aberta para o mar.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-5 px-0 sm:px-4">
+        <ReservationForm />
+      </section>
+
+      <div className="mt-6">
+        <Marquee itens={COMODIDADES} />
+      </div>
+
+      <section className="px-0 pt-10 sm:px-4">
+        <div className="px-4 sm:px-1">
+          <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+            (c) · Localização
+          </div>
+        </div>
+        <div className="mt-3 overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
+          <iframe
+            title="Localização do Hotel Villa di Rimini no mapa"
+            src="https://www.google.com/maps?q=Av.+Leovigildo+Dias+Vieira,+1140+-+Itagu%C3%A1,+Ubatuba+-+SP&z=16&output=embed"
+            className="h-64 w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="flex items-center justify-between gap-3 bg-paper-2 p-4">
+            <p className="text-sm leading-snug text-ink">
+              {HOTEL.endereco} · {HOTEL.bairro}, {HOTEL.cidade}/{HOTEL.uf}
+            </p>
+            <a
+              href={HOTEL.mapa}
+              target="_blank"
+              rel="noreferrer"
+              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-surf"
+            >
+              Abrir no Maps →
+            </a>
+          </div>
+        </div>
+        <p className="mt-3 max-w-[46ch] px-4 text-pretty text-sm leading-relaxed text-ink-2 sm:px-1">
+          O Projeto Tamar e o Aquário ficam a 5 minutos; as praias Vermelha e Grande, a 10
+          minutos de carro.
+        </p>
+        <Link
+          to="/o-hotel"
+          className="mt-3 inline-block px-4 font-mono text-[11px] uppercase tracking-[0.15em] text-surf sm:px-1"
+        >
+          Conhecer o hotel →
+        </Link>
+      </section>
+
 
       <section className="px-0 pb-4 pt-10 sm:px-4">
         <div className="px-4 sm:px-0">
