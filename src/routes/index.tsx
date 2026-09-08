@@ -93,6 +93,63 @@ function Home() {
         </div>
       </section>
 
+      <section className="px-0 pt-10 sm:px-4">
+        <div className="px-4 sm:px-0">
+          <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
+            (b) · Lazer &amp; café
+          </div>
+          <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
+            Piscina, bar e buffet
+          </h2>
+        </div>
+
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="space-y-3">
+            <img
+              src={piscina}
+              alt="Piscina do hotel com vista para o mar"
+              loading="lazy"
+              className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
+            />
+            <img
+              src={cafeDaManha}
+              alt="Café da manhã buffet com frutas, pães e café"
+              loading="lazy"
+              className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
+            />
+          </div>
+          <div className="space-y-3 pt-1">
+            <Link to="/lazer" className="block bg-paper-2 p-4 sm:rounded-[12px]">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">
+                Piscina &amp; bar
+              </div>
+              <p className="mt-1.5 text-sm leading-snug text-ink">
+                Piscina e bar para petiscos e bebidas geladas.
+              </p>
+            </Link>
+            <Link to="/cafe-da-manha" className="block bg-paper-2 p-4 sm:rounded-[12px]">
+              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">
+                Café da manhã
+              </div>
+              <p className="mt-1.5 text-sm leading-snug text-ink">
+                Buffet servido diariamente em sala de refeições ampla e iluminada.
+              </p>
+            </Link>
+            <div className="relative overflow-hidden bg-ink p-4 text-paper sm:rounded-[12px]">
+              <div className="wave pointer-events-none absolute inset-0 opacity-60" />
+              <div className="relative">
+                <div className="inline-block -rotate-2 bg-surf px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-paper sm:rounded-sm">
+                  Pet friendly
+                </div>
+                <p className="mt-2 text-sm leading-snug text-paper">
+                  Um dos poucos hotéis do Litoral Norte que recebe o seu pet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mt-5 px-0 sm:px-4">
         <div className="relative overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[16px]">
           <HeroSlideshow
@@ -174,62 +231,6 @@ function Home() {
         </Link>
       </section>
 
-      <section className="px-0 pt-10 sm:px-4">
-        <div className="px-4 sm:px-0">
-          <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-            (c) · Lazer &amp; café
-          </div>
-          <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
-            Piscina, bar e buffet
-          </h2>
-        </div>
-
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <div className="space-y-3">
-            <img
-              src={piscina}
-              alt="Piscina do hotel com vista para o mar"
-              loading="lazy"
-              className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
-            />
-            <img
-              src={cafeDaManha}
-              alt="Café da manhã buffet com frutas, pães e café"
-              loading="lazy"
-              className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
-            />
-          </div>
-          <div className="space-y-3 pt-1">
-            <Link to="/lazer" className="block bg-paper-2 p-4 sm:rounded-[12px]">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">
-                Piscina &amp; bar
-              </div>
-              <p className="mt-1.5 text-sm leading-snug text-ink">
-                Piscina e bar para petiscos e bebidas geladas.
-              </p>
-            </Link>
-            <Link to="/cafe-da-manha" className="block bg-paper-2 p-4 sm:rounded-[12px]">
-              <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">
-                Café da manhã
-              </div>
-              <p className="mt-1.5 text-sm leading-snug text-ink">
-                Buffet servido diariamente em sala de refeições ampla e iluminada.
-              </p>
-            </Link>
-            <div className="relative overflow-hidden bg-ink p-4 text-paper sm:rounded-[12px]">
-              <div className="wave pointer-events-none absolute inset-0 opacity-60" />
-              <div className="relative">
-                <div className="inline-block -rotate-2 bg-surf px-2 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-paper sm:rounded-sm">
-                  Pet friendly
-                </div>
-                <p className="mt-2 text-sm leading-snug text-paper">
-                  Um dos poucos hotéis do Litoral Norte que recebe o seu pet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="px-0 pb-4 pt-10 sm:px-4">
         <div className="px-4 sm:px-0">
