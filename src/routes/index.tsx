@@ -5,6 +5,10 @@ import heroVaranda from "@/assets/hero-varanda.jpg.asset.json";
 import heroPost from "@/assets/hero-post.png.asset.json";
 import bannerUbatuba1 from "@/assets/banner-ubatuba-1.png.asset.json";
 import bannerUbatuba2 from "@/assets/banner-ubatuba-2.png.asset.json";
+import bannerUbatuba3 from "@/assets/banner-ubatuba-3.png.asset.json";
+import bannerUbatuba4 from "@/assets/banner-ubatuba-4.png.asset.json";
+import bannerUbatuba5 from "@/assets/banner-ubatuba-5.png.asset.json";
+import bannerUbatuba6 from "@/assets/banner-ubatuba-6.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
@@ -66,14 +70,30 @@ function Home() {
           slides={[
             {
               src: bannerUbatuba1.url,
-              alt: "Banner promocional: Sua próxima estadia em Ubatuba está a alguns cliques",
+              alt: "Banner promocional: área externa do hotel com piscina",
             },
             {
               src: bannerUbatuba2.url,
-              alt: "Banner panorâmico da Praia do Itaguá em Ubatuba",
+              alt: "Banner promocional: fachada do Hotel Villa di Rimini",
+            },
+            {
+              src: bannerUbatuba3.url,
+              alt: "Banner promocional: vista da varanda para o mar",
+            },
+            {
+              src: bannerUbatuba4.url,
+              alt: "Banner promocional: praia de Ubatuba vista aérea",
+            },
+            {
+              src: bannerUbatuba5.url,
+              alt: "Banner promocional: costa rochosa e mar de Ubatuba",
+            },
+            {
+              src: bannerUbatuba6.url,
+              alt: "Banner promocional: praia de Ubatuba com coqueiro",
             },
           ]}
-          interval={5000}
+          interval={3000}
         />
       </section>
       <div className="mx-auto max-w-5xl pb-4">
