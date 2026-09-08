@@ -193,7 +193,7 @@ function Home() {
       <section className="px-0 pt-10 sm:px-4">
         <div className="px-4 sm:px-1">
           <div className="animate-rise font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
-            (b) · Localização
+            (c) · Localização
           </div>
         </div>
         <div className="mt-3 overflow-hidden outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
