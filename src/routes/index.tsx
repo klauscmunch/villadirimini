@@ -63,41 +63,28 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const BANNER_PADRAO_SLIDES = [
+  { src: bannerUbatuba1.url, alt: "Banner promocional: área externa do hotel com piscina" },
+  { src: bannerUbatuba2.url, alt: "Banner promocional: fachada do Hotel Villa di Rimini" },
+  { src: bannerUbatuba3.url, alt: "Banner promocional: vista da varanda para o mar" },
+  { src: bannerUbatuba4.url, alt: "Banner promocional: praia de Ubatuba vista aérea" },
+  { src: bannerUbatuba5.url, alt: "Banner promocional: costa rochosa e mar de Ubatuba" },
+  { src: bannerUbatuba6.url, alt: "Banner promocional: praia de Ubatuba com coqueiro" },
+];
+
 function Home() {
   const quartos = useFotosQuartos();
+  const fotosBanner = useFotos("banner");
+  const { intervalo } = useBannerConfig();
+  const slides = fotosBanner.length
+    ? fotosBanner.map((f) => ({ src: f.url, alt: f.alt || "Hotel Villa di Rimini" }))
+    : BANNER_PADRAO_SLIDES;
   return (
     <>
       <section className="w-full">
-        <BannerSlideshow
-          slides={[
-            {
-              src: bannerUbatuba1.url,
-              alt: "Banner promocional: área externa do hotel com piscina",
-            },
-            {
-              src: bannerUbatuba2.url,
-              alt: "Banner promocional: fachada do Hotel Villa di Rimini",
-            },
-            {
-              src: bannerUbatuba3.url,
-              alt: "Banner promocional: vista da varanda para o mar",
-            },
-            {
-              src: bannerUbatuba4.url,
-              alt: "Banner promocional: praia de Ubatuba vista aérea",
-            },
-            {
-              src: bannerUbatuba5.url,
-              alt: "Banner promocional: costa rochosa e mar de Ubatuba",
-            },
-            {
-              src: bannerUbatuba6.url,
-              alt: "Banner promocional: praia de Ubatuba com coqueiro",
-            },
-          ]}
-          interval={3000}
-        />
+        <BannerSlideshow slides={slides} interval={intervalo} />
       </section>
+
       <div className="mx-auto max-w-5xl pb-4">
         <section className="px-0 pt-4 sm:px-4">
         <div className="px-4 sm:px-1">
