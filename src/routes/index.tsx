@@ -256,10 +256,6 @@ function Home() {
         <ReservationForm />
       </section>
 
-      <div className="mt-6">
-        <Marquee itens={COMODIDADES} />
-      </div>
-
 
       <section className="px-0 pb-4 pt-10 sm:px-4">
         <div className="px-4 sm:px-0">
