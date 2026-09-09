@@ -177,13 +177,27 @@ function PainelQuartos() {
     setEstado("Enviando foto de " + nome + "...");
     try {
       const url = await comprimirImagem(file);
-      const { error } = await supabase
+      const registro = {
+        secao: "quartos",
+        chave: slug,
+        url,
+        alt: `Apartamento ${nome}`,
+        ordem: 0,
+      };
+
+      const { data: existente, error: erroBusca } = await supabase
         .from("site_fotos")
-        .upsert(
-          { secao: "quartos", chave: slug, url, alt: `Apartamento ${nome}`, ordem: 0 },
-          { onConflict: "secao,chave" },
-        );
+        .select("id")
+        .eq("secao", "quartos")
+        .eq("chave", slug)
+        .maybeSingle();
+      if (erroBusca) throw erroBusca;
+
+      const { error } = existente
+        ? await supabase.from("site_fotos").update(registro).eq("id", existente.id)
+        : await supabase.from("site_fotos").insert(registro);
       if (error) throw error;
+
       await queryClient.invalidateQueries({ queryKey: ["site_fotos", "quartos"] });
       setEstado("Foto de " + nome + " atualizada!");
     } catch (err) {
