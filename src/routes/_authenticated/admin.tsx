@@ -6,6 +6,7 @@ import { ACOMODACOES } from "@/lib/hotel";
 import {
   comprimirImagem,
   MARQUEE_PADRAO,
+  useBannerConfig,
   useFotos,
   useFotosQuartos,
   useMarquee,
@@ -72,8 +73,10 @@ function Admin() {
       ) : (
         <div className="mt-8 space-y-12">
           <PainelMarquee />
+          <PainelBanner />
           <PainelQuartos />
           <PainelHotel />
+
         </div>
       )}
     </div>
@@ -248,10 +251,27 @@ function PainelQuartos() {
   );
 }
 
-function PainelHotel() {
+function GaleriaFotos({
+  secao,
+  titulo,
+  descricao,
+}: {
+  secao: string;
+  titulo: string;
+  descricao: string;
+}) {
   const queryClient = useQueryClient();
-  const fotos = useFotos("hotel");
+  const fotos = useFotos(secao);
   const [estado, setEstado] = useState<string | null>(null);
+  const [textos, setTextos] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    setTextos(Object.fromEntries(fotos.map((f) => [f.id as string, f.alt])));
+  }, [fotos]);
+
+  async function atualizar() {
+    await queryClient.invalidateQueries({ queryKey: ["site_fotos", secao] });
+  }
 
   async function adicionar(file: File) {
     setEstado("Enviando foto...");
@@ -260,9 +280,9 @@ function PainelHotel() {
       const ordem = fotos.length ? Math.max(...fotos.map((f) => f.ordem)) + 1 : 0;
       const { error } = await supabase
         .from("site_fotos")
-        .insert({ secao: "hotel", url, alt: "Hotel Villa di Rimini", ordem });
+        .insert({ secao, url, alt: "Hotel Villa di Rimini", ordem });
       if (error) throw error;
-      await queryClient.invalidateQueries({ queryKey: ["site_fotos", "hotel"] });
+      await atualizar();
       setEstado("Foto adicionada!");
     } catch (err) {
       setEstado(err instanceof Error ? err.message : "Erro ao enviar a foto.");
@@ -271,16 +291,32 @@ function PainelHotel() {
 
   async function remover(id: string) {
     await supabase.from("site_fotos").delete().eq("id", id);
-    await queryClient.invalidateQueries({ queryKey: ["site_fotos", "hotel"] });
+    await atualizar();
     setEstado("Foto removida.");
+  }
+
+  async function salvarTexto(id: string) {
+    const alt = (textos[id] ?? "").trim();
+    const { error } = await supabase.from("site_fotos").update({ alt }).eq("id", id);
+    if (error) return setEstado("Erro ao salvar o texto: " + error.message);
+    await atualizar();
+    setEstado("Texto salvo!");
+  }
+
+  async function mover(index: number, direcao: -1 | 1) {
+    const a = fotos[index];
+    const b = fotos[index + direcao];
+    if (!a?.id || !b?.id) return;
+    await supabase.from("site_fotos").update({ ordem: b.ordem }).eq("id", a.id);
+    await supabase.from("site_fotos").update({ ordem: a.ordem }).eq("id", b.id);
+    await atualizar();
+    setEstado("Ordem atualizada.");
   }
 
   return (
     <section>
-      <Titulo>Fotos da página “O Hotel”</Titulo>
-      <p className="mt-2 text-sm text-ink-2">
-        Enquanto nenhuma foto for enviada aqui, a página mostra as fotos originais.
-      </p>
+      <Titulo>{titulo}</Titulo>
+      <p className="mt-2 text-sm text-ink-2">{descricao}</p>
       {estado && <p className="mt-2 text-sm text-ink-2">{estado}</p>}
 
       <input
@@ -293,20 +329,109 @@ function PainelHotel() {
         className="mt-4 block w-full text-xs text-ink-2"
       />
 
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {fotos.map((f) => (
-          <div key={f.id} className="border border-line p-2">
-            <img src={f.url} alt={f.alt} className="aspect-[4/5] w-full object-cover" />
-            <button
-              type="button"
-              onClick={() => f.id && void remover(f.id)}
-              className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-surf"
-            >
-              Remover
-            </button>
+      <div className="mt-4 space-y-3">
+        {fotos.map((f, i) => (
+          <div key={f.id} className="flex gap-3 border border-line p-3">
+            <img src={f.url} alt={f.alt} className="h-24 w-32 shrink-0 object-cover" />
+            <div className="min-w-0 flex-1">
+              <input
+                value={textos[f.id as string] ?? ""}
+                onChange={(e) =>
+                  setTextos({ ...textos, [f.id as string]: e.target.value })
+                }
+                placeholder="Texto da foto"
+                className="w-full border border-line bg-paper-2 px-3 py-2 text-sm text-ink outline-none"
+              />
+              <div className="mt-2 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.15em]">
+                <button type="button" onClick={() => f.id && void salvarTexto(f.id)} className="text-surf">
+                  Salvar texto
+                </button>
+                <button
+                  type="button"
+                  disabled={i === 0}
+                  onClick={() => void mover(i, -1)}
+                  className="text-ink-2 disabled:opacity-30"
+                >
+                  ↑ Subir
+                </button>
+                <button
+                  type="button"
+                  disabled={i === fotos.length - 1}
+                  onClick={() => void mover(i, 1)}
+                  className="text-ink-2 disabled:opacity-30"
+                >
+                  ↓ Descer
+                </button>
+                <button type="button" onClick={() => f.id && void remover(f.id)} className="text-surf">
+                  Remover
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </section>
   );
 }
+
+function PainelBanner() {
+  const queryClient = useQueryClient();
+  const { intervalo } = useBannerConfig();
+  const [segundos, setSegundos] = useState(intervalo / 1000);
+  const [estado, setEstado] = useState<string | null>(null);
+
+  useEffect(() => {
+    setSegundos(intervalo / 1000);
+  }, [intervalo]);
+
+  async function salvar() {
+    setEstado("Salvando...");
+    const { error } = await supabase
+      .from("site_config")
+      .upsert({ chave: "banner", valor: { intervalo: Math.round(segundos * 1000) } }, { onConflict: "chave" });
+    if (error) return setEstado("Erro ao salvar: " + error.message);
+    await queryClient.invalidateQueries({ queryKey: ["site_config", "banner"] });
+    setEstado("Salvo!");
+  }
+
+  return (
+    <div className="space-y-6">
+      <GaleriaFotos
+        secao="banner"
+        titulo="Fotos do banner (topo da home)"
+        descricao="Enquanto nenhuma foto for enviada aqui, o site mostra as imagens originais do banner."
+      />
+      <div>
+        <label className="font-mono text-[11px] uppercase tracking-[0.15em] text-ink-2">
+          Intervalo entre as fotos — {segundos}s
+        </label>
+        <input
+          type="range"
+          min={1}
+          max={15}
+          step={1}
+          value={segundos}
+          onChange={(e) => setSegundos(Number(e.target.value))}
+          className="mt-2 w-full"
+        />
+        <div className="mt-3 flex items-center gap-3">
+          <button type="button" onClick={salvar} className="bg-ink px-5 py-3 text-sm font-semibold text-paper">
+            Salvar intervalo
+          </button>
+          {estado && <span className="text-sm text-ink-2">{estado}</span>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PainelHotel() {
+  return (
+    <GaleriaFotos
+      secao="hotel"
+      titulo="Fotos da página “O Hotel”"
+      descricao="Enquanto nenhuma foto for enviada aqui, a página mostra as fotos originais."
+    />
+  );
+}
+
