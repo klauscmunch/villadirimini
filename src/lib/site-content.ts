@@ -10,6 +10,30 @@ export type Foto = { id?: string; url: string; alt: string; ordem: number; chave
 
 export const FOTOS_HOTEL_PADRAO: Foto[] = [];
 
+export type BannerConfig = { intervalo: number };
+export const BANNER_PADRAO: BannerConfig = { intervalo: 3000 };
+
+async function buscarBanner(): Promise<BannerConfig> {
+  const { data, error } = await supabase
+    .from("site_config")
+    .select("valor")
+    .eq("chave", "banner")
+    .maybeSingle();
+  if (error || !data) return BANNER_PADRAO;
+  const valor = data.valor as Partial<BannerConfig> | null;
+  const intervalo = Number(valor?.intervalo);
+  return { intervalo: intervalo > 0 ? intervalo : BANNER_PADRAO.intervalo };
+}
+
+export function useBannerConfig() {
+  const { data } = useQuery({
+    queryKey: ["site_config", "banner"],
+    queryFn: buscarBanner,
+    staleTime: 60_000,
+  });
+  return data ?? BANNER_PADRAO;
+}
+
 async function buscarMarquee(): Promise<MarqueeConfig> {
   const { data, error } = await supabase
     .from("site_config")
