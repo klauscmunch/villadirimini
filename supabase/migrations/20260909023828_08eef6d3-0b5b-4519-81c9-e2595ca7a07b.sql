@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS site_fotos_secao_chave_key ON public.site_fotos (secao, chave) WHERE chave IS NOT NULL;
