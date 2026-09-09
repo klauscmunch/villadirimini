@@ -76,14 +76,18 @@ export function useFotos(secao: string) {
   return data ?? [];
 }
 
-/** Fotos dos quartos, com fallback para as imagens originais do projeto. */
+/** Fotos dos quartos (várias por quarto), com fallback para as imagens originais. */
 export function useFotosQuartos() {
   const fotos = useFotos("quartos");
-  const mapa = new Map(fotos.filter((f) => f.chave).map((f) => [f.chave as string, f]));
-  return ACOMODACOES.map((a) => ({
-    ...a,
-    imagem: mapa.get(a.slug)?.url ?? a.imagem,
-  }));
+  return ACOMODACOES.map((a) => {
+    const doQuarto = fotos.filter((f) => f.chave === a.slug);
+    return {
+      ...a,
+      fotos: doQuarto,
+      imagem: doQuarto[0]?.url ?? a.imagem,
+      imagens: doQuarto.length ? doQuarto.map((f) => f.url) : [a.imagem],
+    };
+  });
 }
 
 /** Reduz a imagem e devolve um JPEG em data URL, pronto para salvar. */
