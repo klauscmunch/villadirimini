@@ -13,7 +13,7 @@ import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
 import { COMODIDADES, HOTEL } from "@/lib/hotel";
-import { useFotosQuartos } from "@/lib/site-content";
+import { useBannerConfig, useFotos, useFotosQuartos } from "@/lib/site-content";
 
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
