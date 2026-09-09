@@ -12,7 +12,8 @@ import bannerUbatuba6 from "@/assets/banner-ubatuba-6.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
-import { ACOMODACOES, COMODIDADES, HOTEL } from "@/lib/hotel";
+import { COMODIDADES, HOTEL } from "@/lib/hotel";
+import { useFotosQuartos } from "@/lib/site-content";
 
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
@@ -63,6 +64,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const quartos = useFotosQuartos();
   return (
     <>
       <section className="w-full">
@@ -108,7 +110,7 @@ function Home() {
         </div>
 
         <div className="mt-5 space-y-3">
-          {ACOMODACOES.map((a, i) => (
+          {quartos.map((a, i) => (
             <RoomCard
               key={a.slug}
               nome={a.nome}

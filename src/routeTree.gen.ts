@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AcomodacoesRouteImport } from './routes/acomodacoes'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CafeDaManhaRouteImport } from './routes/cafe-da-manha'
@@ -17,10 +18,15 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as LazerRouteImport } from './routes/lazer'
 import { Route as OHotelRouteImport } from './routes/o-hotel'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcomodacoesRoute = AcomodacoesRouteImport.update({
@@ -58,6 +64,11 @@ const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   path: '/politica-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/lazer': typeof LazerRoute
   '/o-hotel': typeof OHotelRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,10 +90,12 @@ export interface FileRoutesByTo {
   '/lazer': typeof LazerRoute
   '/o-hotel': typeof OHotelRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/acomodacoes': typeof AcomodacoesRoute
   '/auth': typeof AuthRoute
   '/cafe-da-manha': typeof CafeDaManhaRoute
@@ -89,6 +103,7 @@ export interface FileRoutesById {
   '/lazer': typeof LazerRoute
   '/o-hotel': typeof OHotelRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +116,7 @@ export interface FileRouteTypes {
     | '/lazer'
     | '/o-hotel'
     | '/politica-de-privacidade'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,9 +127,11 @@ export interface FileRouteTypes {
     | '/lazer'
     | '/o-hotel'
     | '/politica-de-privacidade'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/acomodacoes'
     | '/auth'
     | '/cafe-da-manha'
@@ -121,10 +139,12 @@ export interface FileRouteTypes {
     | '/lazer'
     | '/o-hotel'
     | '/politica-de-privacidade'
+    | '/_authenticated/admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AcomodacoesRoute: typeof AcomodacoesRoute
   AuthRoute: typeof AuthRoute
   CafeDaManhaRoute: typeof CafeDaManhaRoute
@@ -141,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/acomodacoes': {
@@ -192,11 +219,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AcomodacoesRoute: AcomodacoesRoute,
   AuthRoute: AuthRoute,
   CafeDaManhaRoute: CafeDaManhaRoute,
