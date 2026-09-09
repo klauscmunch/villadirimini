@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ACOMODACOES } from "@/lib/hotel";
+import { useFotosQuartos } from "@/lib/site-content";
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
 
@@ -22,6 +22,7 @@ export const Route = createFileRoute("/acomodacoes")({
 });
 
 function Acomodacoes() {
+  const quartos = useFotosQuartos();
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="px-1 font-mono text-[10px] uppercase tracking-[0.25em] text-surf">
@@ -32,7 +33,7 @@ function Acomodacoes() {
       </h1>
 
       <div className="mt-6 space-y-3">
-        {ACOMODACOES.map((a, i) => (
+        {quartos.map((a, i) => (
           <RoomCard
             key={a.slug}
             nome={a.nome}

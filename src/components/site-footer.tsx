@@ -21,6 +21,11 @@ export function SiteFooter() {
           <Link to="/contato">Reservas</Link>
           <span className="text-surf">/</span>
           <Link to="/politica-de-privacidade">Política de privacidade</Link>
+          <span className="text-surf">/</span>
+          <Link to="/admin" className="text-paper/50">
+            Admin
+          </Link>
+
         </div>
         <p className="mt-4 font-mono text-[10px] text-paper/50">
           © 2026 {HOTEL.nome} · {HOTEL.endereco}, {HOTEL.bairro} —{" "}
