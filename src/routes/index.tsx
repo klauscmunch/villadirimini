@@ -13,7 +13,7 @@ import piscina from "@/assets/piscina.jpg";
 import cafeDaManha from "@/assets/cafe-da-manha.jpg";
 import localizacao from "@/assets/localizacao.jpg";
 import { ACOMODACOES, COMODIDADES, HOTEL } from "@/lib/hotel";
-import { Marquee } from "@/components/marquee";
+
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
 import { HeroSlideshow } from "@/components/hero-slideshow";
@@ -255,10 +255,6 @@ function Home() {
       <section className="mt-5 px-0 sm:px-4">
         <ReservationForm />
       </section>
-
-      <div className="mt-6">
-        <Marquee itens={COMODIDADES} />
-      </div>
 
 
       <section className="px-0 pb-4 pt-10 sm:px-4">

@@ -16,7 +16,8 @@ export function SiteHeader() {
   const [aberto, setAberto] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-paper/20 bg-surf">
+    <header className="border-b border-paper/20 bg-surf">
+
       <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
         <Link to="/" className="leading-none" onClick={() => setAberto(false)}>
           <img
