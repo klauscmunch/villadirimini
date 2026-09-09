@@ -25,10 +25,10 @@ export const MOTOR_RESERVAS =
 export const COMODIDADES = [
   "Recepção 24h",
   "Wi-Fi grátis",
-  "ESTACIONAMENTO",
-  "Piscina & bar",
+  "RESTAURANTE RAÍZES A 160M",
+  "SUSHI MOA GASTRONOMIA 800M",
   "Café da manhã buffet",
-  "Pet friendly",
+  "PATIEIRO BURGER A  60M",
 ];
 
 export const ACOMODACOES = [
