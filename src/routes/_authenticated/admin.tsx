@@ -6,6 +6,7 @@ import { ACOMODACOES } from "@/lib/hotel";
 import {
   comprimirImagem,
   MARQUEE_PADRAO,
+  useBannerConfig,
   useFotos,
   useFotosQuartos,
   useMarquee,
