@@ -1,1 +1,0 @@
-DROP INDEX IF EXISTS public.site_fotos_secao_chave_key;
