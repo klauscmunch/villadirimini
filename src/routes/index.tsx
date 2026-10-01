@@ -117,7 +117,7 @@ function Home() {
             (b) · Lazer &amp; café
           </div>
           <h2 className="mt-1 font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink">
-            Piscina, bar e buffet
+            PISCINA, BAR E PETISCOS
           </h2>
         </div>
 
