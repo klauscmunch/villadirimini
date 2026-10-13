@@ -10,6 +10,9 @@ export type Foto = { id?: string; url: string; alt: string; ordem: number; chave
 
 export const FOTOS_HOTEL_PADRAO: Foto[] = [];
 
+// Referência estável: um `[]` novo a cada render dispara loops em useEffect([fotos]).
+const SEM_FOTOS: Foto[] = [];
+
 export type BannerConfig = { intervalo: number };
 export const BANNER_PADRAO: BannerConfig = { intervalo: 3000 };
 
@@ -68,22 +71,66 @@ async function buscarFotos(secao: string): Promise<Foto[]> {
 }
 
 export function useFotos(secao: string) {
-  const { data } = useQuery({
+  return useFotosComEstado(secao).fotos;
+}
+
+/** Fotos da seção e se a busca já terminou (para não exibir imagens provisórias). */
+export function useFotosComEstado(secao: string) {
+  const { data, isPending } = useQuery({
     queryKey: ["site_fotos", secao],
     queryFn: () => buscarFotos(secao),
     staleTime: 60_000,
   });
-  return data ?? [];
+  return { fotos: data ?? SEM_FOTOS, carregando: isPending };
 }
 
-/** Fotos dos quartos, com fallback para as imagens originais do projeto. */
+/** Máximo de fotos por quarto. */
+export const MAX_FOTOS_QUARTO = 5;
+
+/** Seção onde ficam as fotos de um quarto (uma linha por foto, sem `chave`). */
+export function secaoQuarto(slug: string) {
+  return `quarto-${slug}`;
+}
+
+/** Formato antigo: uma única foto por quarto em secao "quartos", chave = slug. */
+export const SECAO_QUARTOS_ANTIGA = "quartos";
+
+export type FotoQuarto = Foto & { secao: string };
+
+async function buscarFotosQuartos(): Promise<FotoQuarto[]> {
+  const { data, error } = await supabase
+    .from("site_fotos")
+    .select("id, url, alt, ordem, chave, secao")
+    .or(`secao.eq.${SECAO_QUARTOS_ANTIGA},secao.like.quarto-%`)
+    .order("ordem", { ascending: true });
+  if (error || !data) return [];
+  return data as FotoQuarto[];
+}
+
+/** Fotos de todos os quartos (formato novo e antigo) numa única busca. */
+export function useFotosQuartosComEstado() {
+  const { data, isPending } = useQuery({
+    queryKey: ["site_fotos", "quartos-todos"],
+    queryFn: buscarFotosQuartos,
+    staleTime: 60_000,
+  });
+  const fotos = data ?? (SEM_FOTOS as FotoQuarto[]);
+  const quartos = ACOMODACOES.map((a) => {
+    const antiga = fotos.filter((f) => f.secao === SECAO_QUARTOS_ANTIGA && f.chave === a.slug);
+    const novas = fotos.filter((f) => f.secao === secaoQuarto(a.slug));
+    const lista = [...antiga, ...novas].slice(0, MAX_FOTOS_QUARTO);
+    return {
+      ...a,
+      fotos: lista,
+      imagens: lista.map((f) => ({ src: f.url, alt: f.alt || `Apartamento ${a.nome}` })),
+    };
+  });
+  return { quartos, carregando: isPending };
+}
+
+/** Quartos com suas fotos (`imagens` vazio enquanto carrega ou se não houver foto). */
 export function useFotosQuartos() {
-  const fotos = useFotos("quartos");
-  const mapa = new Map(fotos.filter((f) => f.chave).map((f) => [f.chave as string, f]));
-  return ACOMODACOES.map((a) => ({
-    ...a,
-    imagem: mapa.get(a.slug)?.url ?? a.imagem,
-  }));
+  return useFotosQuartosComEstado().quartos;
 }
 
 /** Reduz a imagem e devolve um JPEG em data URL, pronto para salvar. */

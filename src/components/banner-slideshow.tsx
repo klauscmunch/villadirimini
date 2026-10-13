@@ -22,7 +22,12 @@ export function BannerSlideshow({ slides, interval = 5000 }: BannerSlideshowProp
     return () => clearInterval(timer);
   }, [slides.length, interval]);
 
-  if (!mounted || slides.length === 0) {
+  if (slides.length === 0) {
+    // Fotos ainda carregando: reserva o espaço sem mostrar imagem provisória.
+    return <div className="aspect-[16/9] w-full bg-black/5" aria-hidden="true" />;
+  }
+
+  if (!mounted) {
     return (
       <img
         src={slides[0]?.src}

@@ -39,7 +39,7 @@ function Acomodacoes() {
             nome={a.nome}
             detalhe={a.detalhe}
             descricao={a.descricao}
-            imagem={a.imagem}
+            imagens={a.imagens}
             etiqueta={a.etiqueta}
             delay={60 + i * 60}
           />

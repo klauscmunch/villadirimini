@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { credenciaisDevAdmin, DEV_ADMIN_HABILITADO, entrarDevAdmin } from "@/lib/dev-admin";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -36,7 +37,10 @@ function AuthPage() {
     setMsg(null);
     setCarregando(true);
     try {
-      if (modo === "entrar") {
+      if (modo === "entrar" && credenciaisDevAdmin(email, senha)) {
+        entrarDevAdmin();
+        navigate({ to: "/admin", replace: true });
+      } else if (modo === "entrar") {
         const { error } = await supabase.auth.signInWithPassword({ email, password: senha });
         if (error) throw error;
         navigate({ to: "/admin", replace: true });
@@ -63,10 +67,15 @@ function AuthPage() {
         {modo === "entrar" ? "Entrar" : "Criar conta"}
       </h1>
       <p className="mt-2 text-sm text-ink-2">Área de administração do site.</p>
+      {DEV_ADMIN_HABILITADO && (
+        <p className="mt-2 text-sm text-ink-2">
+          Teste local: usuário <strong>admin</strong>, senha <strong>admin</strong>.
+        </p>
+      )}
 
       <form onSubmit={enviar} className="mt-6 space-y-3">
         <input
-          type="email"
+          type={DEV_ADMIN_HABILITADO ? "text" : "email"}
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -76,7 +85,7 @@ function AuthPage() {
         <input
           type="password"
           required
-          minLength={6}
+          minLength={DEV_ADMIN_HABILITADO ? undefined : 6}
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
           placeholder="Senha"

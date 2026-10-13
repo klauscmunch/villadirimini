@@ -1,17 +1,20 @@
+import { useEffect, useRef, useState } from "react";
 import { MOTOR_RESERVAS } from "@/lib/hotel";
+
+type Imagem = { src: string; alt: string };
 
 export function RoomCard({
   nome,
   detalhe,
   descricao,
-  imagem,
+  imagens,
   etiqueta,
   delay = 0,
 }: {
   nome: string;
   detalhe: string;
   descricao: string;
-  imagem: string;
+  imagens: Imagem[];
   etiqueta?: string | null;
   delay?: number;
 }) {
@@ -21,14 +24,13 @@ export function RoomCard({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="relative">
-        <img
-          src={imagem}
-          alt={`Apartamento ${nome}`}
-          loading="lazy"
-          className="h-44 w-full object-cover"
-        />
+        {imagens.length ? (
+          <FotosQuarto nome={nome} imagens={imagens} />
+        ) : (
+          <div className="h-44 w-full bg-black/5" aria-hidden="true" />
+        )}
         {etiqueta && (
-          <span className="absolute left-3 top-3 -rotate-3 rounded-sm bg-surf px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
+          <span className="pointer-events-none absolute left-3 top-3 -rotate-3 rounded-sm bg-surf px-2 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
             {etiqueta}
           </span>
         )}
@@ -52,6 +54,86 @@ export function RoomCard({
         </div>
         <p className="mt-3 text-sm leading-snug text-ink-2">{descricao}</p>
       </div>
+    </div>
+  );
+}
+
+/** Fotos do quarto lado a lado: deslizar no celular, setas no computador, indicadores embaixo. */
+function FotosQuarto({ nome, imagens }: { nome: string; imagens: Imagem[] }) {
+  const trilho = useRef<HTMLDivElement>(null);
+  const [atual, setAtual] = useState(0);
+  const varias = imagens.length > 1;
+
+  useEffect(() => {
+    const el = trilho.current;
+    if (!el || !varias) return;
+    const aoRolar = () => setAtual(Math.round(el.scrollLeft / el.clientWidth));
+    el.addEventListener("scroll", aoRolar, { passive: true });
+    return () => el.removeEventListener("scroll", aoRolar);
+  }, [varias]);
+
+  function irPara(i: number) {
+    const el = trilho.current;
+    if (!el) return;
+    const destino = (i + imagens.length) % imagens.length;
+    el.scrollTo({ left: destino * el.clientWidth, behavior: "smooth" });
+  }
+
+  return (
+    <div
+      className="group/fotos relative"
+      role={varias ? "region" : undefined}
+      aria-roledescription={varias ? "carrossel" : undefined}
+      aria-label={varias ? `Fotos do apartamento ${nome}` : undefined}
+    >
+      <div
+        ref={trilho}
+        className="flex h-44 snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {imagens.map((img, i) => (
+          <img
+            key={img.src.slice(-40) + i}
+            src={img.src}
+            alt={varias ? `${img.alt} (${i + 1} de ${imagens.length})` : img.alt}
+            loading="lazy"
+            draggable={false}
+            className="h-44 w-full shrink-0 snap-center object-cover"
+          />
+        ))}
+      </div>
+
+      {varias && (
+        <>
+          <button
+            type="button"
+            onClick={() => irPara(atual - 1)}
+            aria-label="Foto anterior"
+            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center bg-paper/85 text-lg text-ink opacity-0 shadow-sm transition-opacity group-hover/fotos:opacity-100 focus-visible:opacity-100 max-md:opacity-100"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={() => irPara(atual + 1)}
+            aria-label="Próxima foto"
+            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center bg-paper/85 text-lg text-ink opacity-0 shadow-sm transition-opacity group-hover/fotos:opacity-100 focus-visible:opacity-100 max-md:opacity-100"
+          >
+            ›
+          </button>
+          <div className="pointer-events-none absolute inset-x-0 bottom-2 flex justify-center gap-1.5">
+            {imagens.map((_, i) => (
+              <span
+                key={i}
+                aria-hidden="true"
+                className={`h-1.5 transition-all ${i === atual ? "w-4 bg-paper" : "w-1.5 bg-paper/60"}`}
+              />
+            ))}
+          </div>
+          <span className="sr-only" aria-live="polite">
+            Foto {atual + 1} de {imagens.length}
+          </span>
+        </>
+      )}
     </div>
   );
 }

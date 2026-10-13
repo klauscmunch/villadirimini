@@ -10,10 +10,9 @@ import bannerUbatuba4 from "@/assets/banner-ubatuba-4.png.asset.json";
 import bannerUbatuba5 from "@/assets/banner-ubatuba-5.png.asset.json";
 import bannerUbatuba6 from "@/assets/banner-ubatuba-6.png.asset.json";
 import piscina from "@/assets/piscina.jpg";
-import cafeDaManha from "@/assets/cafe-da-manha.jpg";
-import localizacao from "@/assets/localizacao.jpg";
 import { COMODIDADES, HOTEL } from "@/lib/hotel";
-import { useBannerConfig, useFotos, useFotosQuartos } from "@/lib/site-content";
+import { FotoContato } from "@/components/foto-contato";
+import { useBannerConfig, useFotosComEstado, useFotosQuartos } from "@/lib/site-content";
 
 import { RoomCard } from "@/components/room-card";
 import { ReservationForm } from "@/components/reservation-form";
@@ -74,11 +73,14 @@ const BANNER_PADRAO_SLIDES = [
 
 function Home() {
   const quartos = useFotosQuartos();
-  const fotosBanner = useFotos("banner");
+  const { fotos: fotosBanner, carregando: carregandoBanner } = useFotosComEstado("banner");
+  const { fotos: fotosCafe, carregando: carregandoCafe } = useFotosComEstado("cafe");
   const { intervalo } = useBannerConfig();
-  const slides = fotosBanner.length
-    ? fotosBanner.map((f) => ({ src: f.url, alt: f.alt || "Hotel Villa di Rimini" }))
-    : BANNER_PADRAO_SLIDES;
+  const slides = carregandoBanner
+    ? []
+    : fotosBanner.length
+      ? fotosBanner.map((f) => ({ src: f.url, alt: f.alt || "Hotel Villa di Rimini" }))
+      : BANNER_PADRAO_SLIDES;
   return (
     <>
       <section className="w-full">
@@ -103,7 +105,7 @@ function Home() {
               nome={a.nome}
               detalhe={a.detalhe}
               descricao={a.descricao}
-              imagem={a.imagem}
+              imagens={a.imagens}
               etiqueta={a.etiqueta}
               delay={80 + i * 60}
             />
@@ -129,12 +131,18 @@ function Home() {
               loading="lazy"
               className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
             />
-            <img
-              src={cafeDaManha}
-              alt="Café da manhã buffet com frutas, pães e café"
-              loading="lazy"
-              className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
-            />
+            {carregandoCafe ? (
+              <div className="aspect-[4/5] w-full bg-black/5 sm:rounded-[12px]" aria-hidden="true" />
+            ) : (
+              fotosCafe[0] && (
+                <img
+                  src={fotosCafe[0].url}
+                  alt={fotosCafe[0].alt || "Café da manhã do Hotel Villa di Rimini"}
+                  loading="lazy"
+                  className="aspect-[4/5] w-full object-cover outline-1 -outline-offset-1 outline-black/5 sm:rounded-[12px]"
+                />
+              )
+            )}
           </div>
           <div className="space-y-3 pt-1">
             <Link to="/lazer" className="block bg-paper-2 p-4 sm:rounded-[12px]">
@@ -258,12 +266,7 @@ function Home() {
 
         <div className="mt-4 overflow-hidden bg-paper-2 outline-1 -outline-offset-1 outline-black/5 sm:rounded-[14px]">
           <a href={HOTEL.mapa} target="_blank" rel="noreferrer">
-            <img
-              src={localizacao}
-              alt="Vista aérea da orla do Itaguá em Ubatuba"
-              loading="lazy"
-              className="h-40 w-full object-cover"
-            />
+            <FotoContato />
           </a>
           <div className="p-4">
             <div className="text-sm leading-snug text-ink">

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import localizacao from "@/assets/localizacao.jpg";
+import { FotoContato } from "@/components/foto-contato";
 import { HOTEL } from "@/lib/hotel";
 import { ReservationForm } from "@/components/reservation-form";
 
@@ -32,12 +32,7 @@ function Contato() {
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <div className="overflow-hidden rounded-[14px] bg-paper-2 outline-1 -outline-offset-1 outline-black/5">
           <a href={HOTEL.mapa} target="_blank" rel="noreferrer">
-            <img
-              src={localizacao}
-              alt="Vista aérea da orla do Itaguá em Ubatuba"
-              loading="lazy"
-              className="h-40 w-full object-cover"
-            />
+            <FotoContato />
           </a>
           <div className="p-4">
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-2">

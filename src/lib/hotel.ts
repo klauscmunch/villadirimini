@@ -1,6 +1,3 @@
-import quartoMar from "@/assets/quarto-mar.jpg";
-import quartoDuplo from "@/assets/quarto-duplo.jpg";
-import quartoFamilia from "@/assets/quarto-familia.jpg";
 
 export const HOTEL = {
   nome: "Hotel Villa di Rimini",
@@ -35,7 +32,6 @@ export const ACOMODACOES = [
   {
     slug: "mar",
     nome: "Duplo vista mar",
-    imagem: quartoMar,
     detalhe: "2 pessoas · varanda",
     descricao:
       "Apartamento voltado para a Praia do Itaguá, com varanda para acompanhar o nascer do sol.",
@@ -44,7 +40,6 @@ export const ACOMODACOES = [
   {
     slug: "duplo",
     nome: "Duplo",
-    imagem: quartoDuplo,
     detalhe: "2 pessoas · cama de casal",
     descricao:
       "Apartamento confortável para casais, com ar-condicionado, TV, frigobar e enxoval completo.",
@@ -53,7 +48,6 @@ export const ACOMODACOES = [
   {
     slug: "familia",
     nome: "Família",
-    imagem: quartoFamilia,
     detalhe: "4 PESSOAS · 1 CAMA DE CASAL + 2 CAMAS DE SOLTEIROS",
     descricao:
       "Espaço extra para a família toda, com camas adicionais e área de estar.",

@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import areaExterna from "@/assets/area-externa.jpg.asset.json";
 import piscina from "@/assets/piscina.jpg";
-import cafeDaManha from "@/assets/cafe-da-manha.jpg";
-import { Gallery } from "@/components/gallery";
+import { GaleriaSecao } from "@/components/gallery";
 import { HOTEL } from "@/lib/hotel";
-import { useFotos } from "@/lib/site-content";
 
 const TITULO = "O Hotel — Villa di Rimini, Ubatuba";
 const DESCRICAO =
@@ -27,14 +25,9 @@ export const Route = createFileRoute("/o-hotel")({
 const GALERIA_PADRAO = [
   { src: areaExterna.url, alt: "Área externa com piscina e varanda do Hotel Villa di Rimini" },
   { src: piscina, alt: "Piscina com vista para o mar" },
-  { src: cafeDaManha, alt: "Mesa de café da manhã" },
 ];
 
 function OHotel() {
-  const fotos = useFotos("hotel");
-  const galeria = fotos.length
-    ? fotos.map((f) => ({ src: f.url, alt: f.alt || "Hotel Villa di Rimini" }))
-    : GALERIA_PADRAO;
   return (
     <div className="mx-auto max-w-5xl px-5 py-8">
       <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-surf">O Hotel</div>
@@ -71,7 +64,7 @@ function OHotel() {
       </div>
 
       <div className="mt-8">
-        <Gallery imagens={galeria} />
+        <GaleriaSecao secao="hotel" padrao={GALERIA_PADRAO} />
       </div>
 
       <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-2">

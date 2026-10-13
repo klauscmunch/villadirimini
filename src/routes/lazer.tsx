@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import piscina from "@/assets/piscina.jpg";
-import hotelImg from "@/assets/hotel.jpg";
-import heroPraia from "@/assets/hero-praia.jpg";
-import { Gallery } from "@/components/gallery";
+import { GaleriaSecao } from "@/components/gallery";
 
 const TITULO = "Área de lazer — Hotel Villa di Rimini";
 const DESCRICAO =
@@ -35,12 +33,9 @@ function Lazer() {
       </p>
 
       <div className="mt-6">
-        <Gallery
-          imagens={[
-            { src: piscina, alt: "Piscina do hotel ao pôr do sol" },
-            { src: hotelImg, alt: "Bar e área de convivência" },
-            { src: heroPraia, alt: "Praia em frente ao hotel" },
-          ]}
+        <GaleriaSecao
+          secao="lazer"
+          padrao={[{ src: piscina, alt: "Piscina do Hotel Villa di Rimini" }]}
         />
       </div>
     </div>

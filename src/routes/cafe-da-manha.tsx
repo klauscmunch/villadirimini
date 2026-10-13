@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import cafeDaManha from "@/assets/cafe-da-manha.jpg";
-import hotelImg from "@/assets/hotel.jpg";
-import { Gallery } from "@/components/gallery";
+import { GaleriaSecao } from "@/components/gallery";
 
 const TITULO = "Café da manhã — Hotel Villa di Rimini";
 const DESCRICAO =
@@ -36,12 +34,7 @@ function Cafe() {
       </p>
 
       <div className="mt-6">
-        <Gallery
-          imagens={[
-            { src: cafeDaManha, alt: "Buffet de café da manhã" },
-            { src: hotelImg, alt: "Sala de refeições do hotel" },
-          ]}
-        />
+        <GaleriaSecao secao="cafe" />
       </div>
     </div>
   );
