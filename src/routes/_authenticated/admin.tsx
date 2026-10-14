@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { SECAO_FUNDO_ABERTURA } from "@/components/tela-abertura";
 import { ehDevAdmin, sairDevAdmin } from "@/lib/dev-admin";
 import {
   comprimirImagem,
@@ -112,15 +113,13 @@ function PainelMarquee() {
   async function salvar() {
     setEstado("Salvando...");
     const limpos = itens.map((t) => t.trim()).filter(Boolean);
-    const { error } = await supabase
-      .from("site_config")
-      .upsert(
-        {
-          chave: "marquee",
-          valor: { itens: limpos.length ? limpos : MARQUEE_PADRAO.itens, segundos },
-        },
-        { onConflict: "chave" },
-      );
+    const { error } = await supabase.from("site_config").upsert(
+      {
+        chave: "marquee",
+        valor: { itens: limpos.length ? limpos : MARQUEE_PADRAO.itens, segundos },
+      },
+      { onConflict: "chave" },
+    );
     if (error) return setEstado("Erro ao salvar: " + error.message);
     await queryClient.invalidateQueries({ queryKey: ["site_config", "marquee"] });
     setEstado("Salvo!");
@@ -255,6 +254,8 @@ function GaleriaFotos({
   subtitulo = false,
   maximo,
   altPadrao = "Hotel Villa di Rimini",
+  maxLado,
+  previaDesfocada = false,
 }: {
   secao: string;
   titulo: string;
@@ -263,6 +264,10 @@ function GaleriaFotos({
   subtitulo?: boolean;
   maximo?: number;
   altPadrao?: string;
+  /** Lado maior (px) ao reduzir a foto no envio. */
+  maxLado?: number;
+  /** Mostra a prévia já desfocada, como aparece no site. */
+  previaDesfocada?: boolean;
 }) {
   const queryClient = useQueryClient();
   const fotos = useFotos(secao);
@@ -288,7 +293,7 @@ function GaleriaFotos({
     try {
       let ordem = fotos.length ? Math.max(...fotos.map((f) => f.ordem)) + 1 : 0;
       for (const file of enviar) {
-        const url = await comprimirImagem(file);
+        const url = await comprimirImagem(file, maxLado);
         const { error } = await supabase
           .from("site_fotos")
           .insert({ secao, url, alt: altPadrao, ordem: ordem++ });
@@ -366,7 +371,13 @@ function GaleriaFotos({
       <div className="mt-4 space-y-3">
         {fotos.map((f, i) => (
           <div key={f.id} className="flex gap-3 border border-line p-3">
-            <img src={f.url} alt={f.alt} className="h-24 w-32 shrink-0 object-cover" />
+            <div className="h-24 w-32 shrink-0 overflow-hidden">
+              <img
+                src={f.url}
+                alt={f.alt}
+                className={`h-full w-full object-cover ${previaDesfocada ? "scale-125 blur-[6px]" : ""}`}
+              />
+            </div>
             <div className="min-w-0 flex-1">
               <input
                 value={textos[f.id as string] ?? ""}
@@ -485,6 +496,15 @@ function PainelHotel() {
 function PainelPaginas() {
   return (
     <>
+      <GaleriaFotos
+        secao={SECAO_FUNDO_ABERTURA}
+        titulo="Foto de fundo da tela de carregamento"
+        descricao="Envie a foto normal: o site aplica o desfoque automaticamente. Só uma foto é usada; sem foto, aparece o fundo atual (sala do café)."
+        maximo={1}
+        altPadrao="Fundo da tela de abertura"
+        maxLado={1000}
+        previaDesfocada
+      />
       <GaleriaFotos
         secao="cafe"
         titulo="Fotos do café da manhã"

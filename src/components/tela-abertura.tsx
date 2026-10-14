@@ -1,6 +1,10 @@
 import { useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useFotosQuartosComEstado } from "@/lib/site-content";
+import { useFotosComEstado, useFotosQuartosComEstado } from "@/lib/site-content";
+
+/** Seção do painel admin com a foto de fundo da abertura (usa a primeira). */
+export const SECAO_FUNDO_ABERTURA = "abertura";
+const FUNDO_PADRAO = "/abertura/fundo.webp"; // já vem desfocada
 
 // Linha do tempo da animação (segundos desde que a página aparece).
 const TITULO = "Ubatuba te espera.";
@@ -37,6 +41,10 @@ export function TelaAbertura() {
   const { pathname } = useLocation();
   const [ignorar] = useState(() => /^\/(admin|auth)/.test(pathname));
   const { quartos, carregando } = useFotosQuartosComEstado();
+  const { fotos: fotosFundo, carregando: carregandoFundo } =
+    useFotosComEstado(SECAO_FUNDO_ABERTURA);
+  const fundoEnviado = fotosFundo[0]?.url ?? null;
+  const [fundoCarregado, setFundoCarregado] = useState(false);
   // a primeira foto de cada quarto é a que aparece de cara; as demais carregam depois
   const primeiras = quartos.flatMap((q) => q.imagens.slice(0, 1).map((i) => i.src));
   const [hidratada, setHidratada] = useState(false);
@@ -94,12 +102,22 @@ export function TelaAbertura() {
         hidratada ? "tela-abertura--hidratada" : ""
       } ${saindo ? "pointer-events-none -translate-y-full" : "translate-y-0"}`}
     >
-      <img
-        src="/abertura/fundo.webp"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full scale-110 object-cover"
-      />
+      {/* Fundo azul até a foto chegar; a foto enviada no painel é desfocada aqui. */}
+      <div className="absolute inset-0 bg-surf" aria-hidden="true" />
+      {!carregandoFundo && (
+        <img
+          src={fundoEnviado ?? FUNDO_PADRAO}
+          alt=""
+          aria-hidden="true"
+          onLoad={() => setFundoCarregado(true)}
+          ref={(img) => {
+            if (img?.complete && img.naturalWidth) setFundoCarregado(true);
+          }}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            fundoEnviado ? "scale-125 blur-[18px]" : "scale-110"
+          } ${fundoCarregado ? "opacity-100" : "opacity-0"}`}
+        />
+      )}
       <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
 
       <div className="relative flex flex-col items-center">
