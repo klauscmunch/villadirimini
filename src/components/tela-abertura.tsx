@@ -127,8 +127,7 @@ export function TelaAbertura() {
             <button
               type="button"
               onClick={continuar}
-              autoFocus
-              className="abertura-barra abertura-barra--cheia group px-1 text-[clamp(1.2rem,5vw,1.5rem)] font-semibold leading-none outline-offset-4"
+              className="abertura-barra abertura-barra--cheia group px-1 text-[clamp(1.2rem,5vw,1.5rem)] font-semibold leading-none outline-none [-webkit-tap-highlight-color:transparent] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               style={{ animationDelay: `${atrasoBotao}s` }}
             >
               <span
