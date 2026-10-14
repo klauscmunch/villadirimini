@@ -1,9 +1,7 @@
 import { useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useFotosComEstado, useFotosQuartosComEstado } from "@/lib/site-content";
+import { useFotosQuartosComEstado } from "@/lib/site-content";
 
-/** Seção do painel admin com a foto de fundo da abertura (usa a primeira). */
-export const SECAO_FUNDO_ABERTURA = "abertura";
 const FUNDO_PADRAO = "/abertura/fundo.webp"; // já vem desfocada
 
 // Linha do tempo da animação (segundos desde que a página aparece).
@@ -37,14 +35,10 @@ function preCarregar(urls: string[]) {
  * (aparece antes do JavaScript) e enquanto isso as fotos dos quartos são baixadas.
  * O botão "continuar" surge quando o site está pronto.
  */
-export function TelaAbertura() {
+export function TelaAbertura({ fundo }: { fundo: string | null }) {
   const { pathname } = useLocation();
   const [ignorar] = useState(() => /^\/(admin|auth)/.test(pathname));
   const { quartos, carregando } = useFotosQuartosComEstado();
-  const { fotos: fotosFundo, carregando: carregandoFundo } =
-    useFotosComEstado(SECAO_FUNDO_ABERTURA);
-  const fundoEnviado = fotosFundo[0]?.url ?? null;
-  const [fundoCarregado, setFundoCarregado] = useState(false);
   // a primeira foto de cada quarto é a que aparece de cara; as demais carregam depois
   const primeiras = quartos.flatMap((q) => q.imagens.slice(0, 1).map((i) => i.src));
   const [hidratada, setHidratada] = useState(false);
@@ -98,26 +92,20 @@ export function TelaAbertura() {
       role="dialog"
       aria-modal="true"
       aria-label="Boas-vindas ao Hotel Villa di Rimini"
-      className={`tela-abertura fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-paper px-6 text-center font-display text-white transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+      className={`tela-abertura fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-surf px-6 text-center font-display text-white transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
         hidratada ? "tela-abertura--hidratada" : ""
       } ${saindo ? "pointer-events-none -translate-y-full" : "translate-y-0"}`}
     >
-      {/* Fundo azul até a foto chegar; a foto enviada no painel é desfocada aqui. */}
-      <div className="absolute inset-0 bg-surf" aria-hidden="true" />
-      {!carregandoFundo && (
-        <img
-          src={fundoEnviado ?? FUNDO_PADRAO}
-          alt=""
-          aria-hidden="true"
-          onLoad={() => setFundoCarregado(true)}
-          ref={(img) => {
-            if (img?.complete && img.naturalWidth) setFundoCarregado(true);
-          }}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            fundoEnviado ? "scale-125 blur-[18px]" : "scale-110"
-          } ${fundoCarregado ? "opacity-100" : "opacity-0"}`}
-        />
-      )}
+      {/* A foto vem do servidor junto com a página; a enviada no painel é desfocada aqui. */}
+      <img
+        src={fundo ?? FUNDO_PADRAO}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        className={`absolute inset-0 h-full w-full object-cover ${
+          fundo ? "scale-125 blur-[18px]" : "scale-110"
+        }`}
+      />
       <div className="absolute inset-0 bg-black/10" aria-hidden="true" />
 
       <div className="relative flex flex-col items-center">

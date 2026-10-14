@@ -2,13 +2,13 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { SECAO_FUNDO_ABERTURA } from "@/components/tela-abertura";
 import { ehDevAdmin, sairDevAdmin } from "@/lib/dev-admin";
 import {
   comprimirImagem,
   MARQUEE_PADRAO,
   useBannerConfig,
   MAX_FOTOS_QUARTO,
+  SECAO_FUNDO_ABERTURA,
   SECAO_QUARTOS_ANTIGA,
   secaoQuarto,
   useFotos,
@@ -502,7 +502,7 @@ function PainelPaginas() {
         descricao="Envie a foto normal: o site aplica o desfoque automaticamente. Só uma foto é usada; sem foto, aparece o fundo atual (sala do café)."
         maximo={1}
         altPadrao="Fundo da tela de abertura"
-        maxLado={1000}
+        maxLado={480}
         previaDesfocada
       />
       <GaleriaFotos

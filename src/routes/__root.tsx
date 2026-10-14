@@ -17,8 +17,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { Marquee } from "@/components/marquee";
 import { TelaAbertura } from "@/components/tela-abertura";
 import { COMODIDADES } from "@/lib/hotel";
-
-
+import { buscarFundoAbertura } from "@/lib/site-content";
 
 function NotFoundComponent() {
   return (
@@ -104,13 +103,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap",
-
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
 
   shellComponent: RootShell,
+  // Busca a foto de fundo da abertura no servidor, para ela já vir no HTML.
+  loader: async () => ({ fundoAbertura: await buscarFundoAbertura() }),
+  staleTime: Infinity,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
@@ -132,10 +133,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  // pode vir vazio por um instante (ex.: recarga a quente no desenvolvimento)
+  const fundoAbertura = Route.useLoaderData()?.fundoAbertura ?? null;
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TelaAbertura />
+      <TelaAbertura fundo={fundoAbertura} />
       <div className="flex min-h-screen flex-col bg-background">
         <div className="sticky top-0 z-40">
           <SiteHeader />
@@ -148,6 +151,5 @@ function RootComponent() {
         <SiteFooter />
       </div>
     </QueryClientProvider>
-
   );
 }

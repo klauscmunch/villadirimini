@@ -156,3 +156,26 @@ export function comprimirImagem(file: File, maxLado = 1600, qualidade = 0.82): P
     reader.readAsDataURL(file);
   });
 }
+
+/** Seção do painel admin com a foto de fundo da tela de abertura (usa a primeira). */
+export const SECAO_FUNDO_ABERTURA = "abertura";
+
+/**
+ * URL da foto de fundo enviada no painel, ou null. Usada no loader da rota raiz:
+ * roda no servidor, então a foto já vem no HTML e a abertura não espera por ela.
+ */
+export async function buscarFundoAbertura(): Promise<string | null> {
+  try {
+    const { data, error } = await supabase
+      .from("site_fotos")
+      .select("url")
+      .eq("secao", SECAO_FUNDO_ABERTURA)
+      .order("ordem", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+    if (error || !data) return null;
+    return data.url;
+  } catch {
+    return null;
+  }
+}
